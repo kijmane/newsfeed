@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
+    // 회원가입
     @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody User user) {
         User createdUser = userService.createUser(user.getEmail(), user.getPassword(), user.getNickname());
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
+    // 로그인
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
         try {

@@ -24,18 +24,18 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String email;   // 이메일 필수, 중복불가
 
     @Column(nullable = false)
-    private String password;
+    private String password;    // 비밀번호 필수
 
     @Column(nullable = false)
-    private String nickname;
+    private String nickname;    // 사용자명 필수
 
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;    // 생성일 자동 저장
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;    // 수정일 자동 업데이트
 
 }
