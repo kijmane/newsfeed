@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 
 @Getter
 public class CommentResponse {
-    // 본인 댓글이거나 본인이 게시물 주인이면 canModifyOrDelete = true
-    // 프론트에서 수정/삭제 버튼 표시 가능
-    private Long id;
-    private String nickname;
-    private String content;
-    private LocalDateTime createdAt;
-    private boolean canModifyOrDelete;
+    private final Long id;
+    private final String nickname;
+    private final String content;
+    private final LocalDateTime createdAt;
+    private final boolean canModifyOrDelete; // 본인 댓글이거나 게시글 주인이면 true (수정/삭제 가능)
 
     public CommentResponse(Comment comment, User user) {
         this.id = comment.getId();
         this.nickname = comment.getUser().getNickname();
         this.content = comment.getContent();
         this.createdAt = comment.getCreatedAt();
-        this.canModifyOrDelete = comment.isOwnerOrPostOwner(user);
+        this.canModifyOrDelete = comment.isOwnerOrPostOwner(user); // 본인 or 게시물 주인 여부 확인
+
+
     }
 }
