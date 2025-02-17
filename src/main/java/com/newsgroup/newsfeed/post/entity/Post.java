@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,21 +18,31 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String email;
+    private Long id; // 기본 키
 
     @Column(nullable = false, length = 500)
-    private String content;
+    private String content; // 게시글 내용
 
-    private Long thumbsUpNum;
-    private Long commentsNum;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) // 다대일 관계 (게시물과 작성자)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User user; // 게시글 작성자
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt; // 게시글 생성 시간
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt; // 게시글 수정 시간
+
+    // 게시글이 생성될 때 자동으로 생성 시간 , 수정 시간 설정
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 게시글이 수정될 때 자동으로 수정 시간 업데이트
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
