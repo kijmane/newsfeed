@@ -17,7 +17,7 @@ public class Comment {
     // isOwnerOrPostOwner(User user) 메서드로 검증
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 기본 키
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -28,17 +28,18 @@ public class Comment {
     private Post post;  // 해당 댓글이 달린 게시물
 
     @Column(nullable = false)
-    private String content;
+    private String content; // 댓글 내용
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime createdAt; // 댓글 작성 날짜
+    private LocalDateTime updatedAt; // 댓글 수정 날짜
 
     public void updateContent(String content) {
         this.content = content;
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now(); // 수정 시점 기록
     }
 
     public boolean isOwnerOrPostOwner(User user) {
+        // 댓글 작성자 OR 게시물 작성자만 수정/삭제 가능하도록 체크하는 메서드
         return this.user.equals(user) || this.post.getUser().equals(user);
     }
 }
