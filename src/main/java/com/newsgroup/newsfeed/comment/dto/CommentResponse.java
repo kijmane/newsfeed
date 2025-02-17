@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.comment.dto;
 
 import com.newsgroup.newsfeed.comment.entity.Comment;
-import com.newsgroup.newsfeed.user.entity.User;
+import com.newsgroup.newsfeed.comment.entity.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
