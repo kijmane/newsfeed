@@ -12,15 +12,13 @@ public class CommentResponse {
     private final String nickname;
     private final String content;
     private final LocalDateTime createdAt;
-    private final boolean canModifyOrDelete; // 본인 댓글이거나 게시글 주인이면 true (수정/삭제 가능)
+    private final boolean canModifyOrDelete; // 댓글 작성자인지 여부 추가
 
-    public CommentResponse(Comment comment, User user) {
+    public CommentResponse(Comment comment, User currentUser) {
         this.id = comment.getId();
         this.nickname = comment.getUser().getNickname();
         this.content = comment.getContent();
         this.createdAt = comment.getCreatedAt();
-        this.canModifyOrDelete = comment.isOwnerOrPostOwner(user); // 본인 or 게시물 주인 여부 확인
-
-
+        this.canModifyOrDelete = comment.getUser().equals(currentUser); // 현재 사용자가 댓글 작성자인지 체크
     }
 }
