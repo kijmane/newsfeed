@@ -18,8 +18,8 @@ public class Posts extends BaseEntity {
     private Long id;
     private String email;
     private String content;
-    private Long thumbsUpNum;
-    private Long commentsNum;
+    private Long thumbsUpCount;
+    private Long commentsCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -27,23 +27,29 @@ public class Posts extends BaseEntity {
 
     public Posts(String email,
                  String content,
-                 Long thumbsUpNum,
-                 Long commentsNum,
-                 String users
+                 Long thumbsUpCount,
+                 Long commentsCount,
+                 Users users
     ) {
         this.email = email;
         this.content = content;
-        this.thumbsUpNum = thumbsUpNum;
-        this.commentsNum = commentsNum;
+        this.thumbsUpCount = thumbsUpCount;
+        this.commentsCount = commentsCount;
+        this.users = users;
+
+    }
+
+    public void update(String content) {
+        this.content = content;
     }
 
     // 좋아요수를 증가시키는 메서드
     public void increaseThumbsUp() {
-        this.thumbsUpNum++;
+        this.thumbsUpCount++;
     }
 
     // 댓글수를 증가시키는 메서드
     public void incrementCommentsNum() {
-        this.commentsNum++;
+        this.commentsCount++;
     }
 }
