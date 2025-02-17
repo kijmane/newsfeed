@@ -1,6 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
+import com.newsgroup.newsfeed.entity.posts.Posts;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

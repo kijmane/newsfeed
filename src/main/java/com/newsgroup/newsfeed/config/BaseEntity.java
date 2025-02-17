@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.entity;
+package com.newsgroup.newsfeed.config;
 
 
 import jakarta.persistence.Column;
