@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 public class Posts extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
 
+    @Column(nullable = false, length = 500)
     private String content;
 
     private Long thumbsUpNum;
