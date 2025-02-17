@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.service;
+package com.newsgroup.newsfeed.service.posts;
 
 
 import com.newsgroup.newsfeed.dto.responseDtos.posts.PostsResponseDto;

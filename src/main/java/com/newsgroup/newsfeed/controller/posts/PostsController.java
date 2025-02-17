@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.controller.posts;
 
 import com.newsgroup.newsfeed.dto.responseDtos.posts.PostsResponseDto;
-import com.newsgroup.newsfeed.service.PostService;
+import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
