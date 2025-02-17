@@ -27,9 +27,22 @@ public class User {
     @Column(nullable = false)
     private String nickname;
 
-    private Long followNum;
-    private Long followingNum;
-
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    // 엔티티 저장 시 생성 날짜 자동 설정
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 엔티티 업데이트 시 수정 날짜 자동 설정
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
