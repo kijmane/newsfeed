@@ -1,5 +1,7 @@
 package com.newsgroup.newsfeed.controller.posts;
 
+import com.newsgroup.newsfeed.dto.PostRequestDto;
+import com.newsgroup.newsfeed.dto.PostResponseDto;
 import com.newsgroup.newsfeed.dto.responseDtos.posts.PostsResponseDto;
 import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,22 @@ public class PostsController {
         return ResponseEntity.ok(result);
     }
 
+    @PutMapping ("/posts/{id}")
+    public ResponseEntity<PostResponseDto> update(
+            @PathVariable Long id,
+            @RequestParam String email,
+            @RequestBody PostRequestDto dto
+            ) {
+        return ResponseEntity.ok(postService.update(id, email, dto));
+    }
+
+    @DeleteMapping("/posts{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id,
+                       @RequestParam String email) {
+        postService.deleteById(id, email);
+        return ResponseEntity.ok(). build();
+    }
+
     // 좋아요 수 증가
     @PostMapping("/posts/{postId}/thumbs-up")
     public ResponseEntity<Void> increaseThumbsUp(@PathVariable Long postId) {
@@ -31,23 +49,9 @@ public class PostsController {
     }
 
     // 댓글 수 증가
-    @PostMapping("/posts/{postId}/comment")
+    @PostMapping("/posts/{postId}/comment-up")
     public ResponseEntity<Void> addComment(@PathVariable Long postId) {
         postService.addComment(postId);
         return ResponseEntity.ok().build();
-    }
-
-        // 제인님이 게시글 생성 구현하면.
-//    @PutMapping ("/posts{id}")
-//    public ResponseEntity<PostResponseDto> update(
-//            @PathVariable Long id,
-//            @RequestBody PostRequestDto dto
-//            ) {
-//        return ResponseEntity.ok(postService.update(id, dto));
-//    }
-
-    @DeleteMapping("/posts{id}")
-    public void delete(@PathVariable Long id) {
-        postService.deleteById(id);
     }
 }

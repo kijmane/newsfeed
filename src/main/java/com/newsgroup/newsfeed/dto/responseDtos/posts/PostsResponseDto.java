@@ -13,7 +13,7 @@ public class PostsResponseDto {
     private Long thumbsUpNum;
     private Long commentsNum;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime modifiedAt;
 
     public PostsResponseDto(Long id,
                             String email,
@@ -21,7 +21,7 @@ public class PostsResponseDto {
                             Long thumbsUpNum,
                             Long commentsNum,
                             LocalDateTime createdAt,
-                            LocalDateTime updatedAt
+                            LocalDateTime modifiedAt
     ) {
         this.id = id;
         this.email = email;
@@ -29,6 +29,6 @@ public class PostsResponseDto {
         this.thumbsUpNum = thumbsUpNum;
         this.commentsNum = commentsNum;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.modifiedAt = modifiedAt;
     }
 }

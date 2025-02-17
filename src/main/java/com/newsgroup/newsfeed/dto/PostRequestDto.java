@@ -12,5 +12,5 @@ public class PostRequestDto {
     private Long thumbsUpNum;
     private Long commentsNum;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime modifiedAt;
 }
