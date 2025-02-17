@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.dto;
 
 import com.newsgroup.newsfeed.entity.Comment;
-import com.newsgroup.newsfeed.entity.User;
+import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;
 
 @Getter
@@ -11,7 +11,7 @@ public class CommentResponse {
     private final String content;
     private final boolean canModifyOrDelete; // 댓글 작성자인지 여부
 
-    public CommentResponse(Comment comment, User currentUser) {
+    public CommentResponse(Comment comment, Users currentUser) {
         this.id = comment.getId();
         this.nickname = comment.getUser().getNickname();
         this.content = comment.getContent();

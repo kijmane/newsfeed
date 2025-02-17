@@ -16,11 +16,11 @@ public class Comment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user; // 댓글 작성자
+    private Users user; // 댓글 작성자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
-    private Post post; // 해당 댓글이 달린 게시물
+    private Posts post; // 해당 댓글이 달린 게시물
 
     @Column(nullable = false)
     private String content; // 댓글 내용
@@ -29,7 +29,7 @@ public class Comment extends BaseEntity {
        this.content = content;
    }
 
-   public boolean isOwnerOrPostOwner(User user) {
+   public boolean isOwnerOrPostOwner(Users user) {
        return this.user.equals(user) || this.post != null && this.post.getUser() != null && this.post.getUser().equals(user);
    }
 }
