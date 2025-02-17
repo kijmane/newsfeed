@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.comment.repository;
 
-import com.newsgroup.newsfeed.post.entity.Post;
-import com.newsgroup.newsfeed.user.entity.User;
+import com.newsgroup.newsfeed.comment.entity.Post;
+import com.newsgroup.newsfeed.comment.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
