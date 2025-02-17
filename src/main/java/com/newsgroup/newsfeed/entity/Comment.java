@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.comment.entity;
+package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
 import jakarta.persistence.*;
