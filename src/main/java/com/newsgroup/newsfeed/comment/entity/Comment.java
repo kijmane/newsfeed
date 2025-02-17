@@ -42,4 +42,8 @@ public class Comment {
         // 댓글 작성자 OR 게시물 작성자만 수정/삭제 가능하도록 체크하는 메서드
         return this.user.equals(user) || this.post.getUser().equals(user);
     }
+
+    public void setUpdatedAt(LocalDateTime now) {
+
+    }
 }
