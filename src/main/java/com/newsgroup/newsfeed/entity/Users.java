@@ -8,8 +8,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @NoArgsConstructor
@@ -23,7 +21,15 @@ public class Users extends BaseEntity {
 
     private String nickname;
 
-    Long followNum;
+    private Long followNum;
 
-    Long followingNum;
+    private Long followingNum;
+
+    public void setUserFollow() {
+        this.followNum++;
+    }
+
+    public void followed() {
+        this.followingNum++;
+    }
 }
