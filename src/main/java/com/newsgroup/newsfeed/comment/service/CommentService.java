@@ -27,7 +27,6 @@ public class CommentService {
         }
         return commentRepository.findByPost(post)
                 .stream()
-                // 현재 사용자 전달
                 .map(comment -> new CommentResponse(comment, currentUser))
                 .collect(Collectors.toList());
     }
@@ -38,7 +37,6 @@ public class CommentService {
             throw new IllegalArgumentException("수정 권한이 없습니다.");
         }
         comment.updateContent(content);
-        comment.setUpdatedAt(LocalDateTime.now()); // 수정된 시간 반영
     }
     // 댓글 삭제
     @Transactional
