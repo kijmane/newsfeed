@@ -1,10 +1,10 @@
-package com.newsgroup.newsfeed.comment.service;
+package com.newsgroup.newsfeed.service;
 
-import com.newsgroup.newsfeed.comment.dto.CommentResponse;
-import com.newsgroup.newsfeed.comment.entity.Comment;
-import com.newsgroup.newsfeed.comment.repository.CommentRepository;
-import com.newsgroup.newsfeed.comment.entity.Post;
-import com.newsgroup.newsfeed.comment.entity.User;
+import com.newsgroup.newsfeed.dto.CommentResponse;
+import com.newsgroup.newsfeed.entity.Comment;
+import com.newsgroup.newsfeed.repository.CommentRepository;
+import com.newsgroup.newsfeed.entity.Post;
+import com.newsgroup.newsfeed.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
