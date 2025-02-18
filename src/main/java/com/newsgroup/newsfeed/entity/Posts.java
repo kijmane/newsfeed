@@ -2,15 +2,15 @@ package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Posts extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,11 @@ public class Posts extends BaseEntity {
     @Column(nullable = false, length = 500)
     private String content;
 
-    private Long thumbsUpNum;
+    @Column(nullable = false)
+    private Long thumbsUpNum = 0L;
 
-    private Long commentsNum;
+    @Column(nullable = false)
+    private Long commentsNum = 0L;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
