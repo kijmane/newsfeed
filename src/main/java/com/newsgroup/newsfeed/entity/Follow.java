@@ -2,6 +2,7 @@ package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowDto;
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowedDto;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,6 @@ public class Follow {
 
     @CreatedDate
     private LocalDateTime createdDate;
-
     private LocalDateTime unfollowDate; //언팔로우 날짜 기록용 필드
 
     public Follow(FollowDto dto) {
