@@ -9,8 +9,8 @@ public class PostsRequestDto {
 
     private String email;
     private String content;
-    private Long thumbsUpNum;
-    private Long commentsNum;
+    private Long thumbsUpCount;
+    private Long commentsCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }
