@@ -3,7 +3,7 @@ package com.newsgroup.newsfeed.service.posts;
 
 import com.newsgroup.newsfeed.dto.requestDtos.posts.PostsRequestDto;
 import com.newsgroup.newsfeed.dto.responseDtos.posts.PostsResponseDto;
-import com.newsgroup.newsfeed.entity.posts.Posts;
+import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,8 +32,8 @@ public class PostsService {
                         post.getEmail(),
                         post.getContent(),
                         post.getThumbsUpCount(),
-                        post.getCreatedAt(),
-                        post.getModifiedAt(),
+                        post.getCreatedDate(),
+                        post.getUpdateDate(),
                         post.getCommentsCount()))
                 .collect(Collectors.toList());
     }
@@ -57,8 +57,8 @@ public class PostsService {
                 dto.getEmail(),
                 dto.getContent(),
                 dto.getThumbsUpCount(),
-                dto.getCreatedAt(),
-                dto. getModifiedAt(),
+                dto.getCreatedDate(),
+                dto. getUpdateDate(),
                 dto.getCommentsCount());
 
     }
@@ -96,6 +96,6 @@ public class PostsService {
         Posts posts = postsRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시물이 존재하지 않습니다."));
 
-        postsRepository.save(posts);  // 변경된 엔티티 저장
+        postsRepository.save(posts);
     }
 }

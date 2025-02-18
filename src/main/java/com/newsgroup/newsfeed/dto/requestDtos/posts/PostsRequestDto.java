@@ -11,6 +11,6 @@ public class PostsRequestDto {
     private String content;
     private Long thumbsUpCount;
     private Long commentsCount;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private LocalDateTime createdDate;
+    private LocalDateTime updateDate;
 }

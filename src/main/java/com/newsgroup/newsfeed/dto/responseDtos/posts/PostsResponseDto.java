@@ -11,24 +11,24 @@ public class PostsResponseDto {
     private String email;
     private String content;
     private Long thumbsUpCount;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private LocalDateTime createdDate;
+    private LocalDateTime updateDate;
     private Long commentsCount;
 
     public PostsResponseDto(Long id,
                             String email,
                             String content,
                             Long thumbsUpCount,
-                            LocalDateTime createdAt,
-                            LocalDateTime modifiedAt,
+                            LocalDateTime createdDate,
+                            LocalDateTime updateDate,
                             Long commentsCount
     ) {
         this.id = id;
         this.email = email;
         this.content = content;
         this.thumbsUpCount = thumbsUpCount;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
+        this.createdDate = createdDate;
+        this.updateDate = updateDate;
         this.commentsCount = commentsCount;
     }
 }

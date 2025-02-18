@@ -1,13 +1,10 @@
-package com.newsgroup.newsfeed.entity.posts;
+package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
-import com.newsgroup.newsfeed.entity.PostComments;
-import com.newsgroup.newsfeed.entity.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +24,12 @@ public class Posts extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PostComments> comments = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<PostComments> postCommentsList;
 
     public Posts(String email,
                  String content,
                  Long thumbsUpCount,
-                 Long commentsCount,
                  Users users
     ) {
         this.email = email;
@@ -54,7 +50,7 @@ public class Posts extends BaseEntity {
 
     // 댓글 수를 반환하는 메서드
     public Long getCommentsCount() {
-        return (long) comments.size();
+        return (long) postCommentsList.size();
     }
 
 }
