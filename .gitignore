@@ -28,4 +28,6 @@ bin/
 .vscode/
 
 # Mac OS 시스템 파일 무시
-.DS_Store
+.DS_Store.gradle/
+build/
+.idea/
