@@ -45,9 +45,4 @@ public class Follow {
         this.followed = dto.getFollowed();
         this.follower = dto.getFollower();
     }
-
-    public Follow(SearchMyFollowingReqDto dto) {
-//        this.followed = dto.getFollowed();
-        this.follower = dto.getFollower();
-    }
 }

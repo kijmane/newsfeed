@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -28,6 +29,7 @@ public class FollowServiceImpl implements FollowService {
         String follower = dto.getFollower().getNickname();
         String followed = dto.getFollowed().getNickname();
         return follower + " 님이 " + followed + " 님을 팔로우 하였습니다.";
+
     }
 
     /**
@@ -40,7 +42,7 @@ public class FollowServiceImpl implements FollowService {
                         ? follow.getFollower()
                         : follow.getFollowed()
                 ).filter(users -> targetUser.getId().equals(users.getId()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -51,6 +53,15 @@ public class FollowServiceImpl implements FollowService {
         Follow targetFollower = findFollow(target, unfollowUser);
         deleteById(targetFollower.getId());
         return target.getNickname() + "님이 " + unfollowUser.getNickname() + " 님을 언팔로우 하였습니다.";
+    }
+
+
+    @Override
+    public Follow findByNickname(String follower, String followed) {
+        return findAll().stream()
+                .filter(follow -> follow.getFollower().getNickname().equals(follower)
+                        && follow.getFollowed().getNickname().equals(followed))
+                .findFirst().orElse(null);
     }
 
     private Follow findFollow(Users follower, Users followed) {
