@@ -26,10 +26,11 @@ public class Comment extends BaseEntity {
     private String content; // 댓글 내용
 
    public void updateContent(String content) {
-       this.content = content;
+       this.content = content; // 댓글 내용 수정
    }
 
    public boolean isOwnerOrPostOwner(Users user) {
+       // 댓글을 수정/삭제 할 수 있는 권한이 있는지 확인
        return this.user.equals(user) || this.post != null && this.post.getUser() != null && this.post.getUser().equals(user);
    }
 }

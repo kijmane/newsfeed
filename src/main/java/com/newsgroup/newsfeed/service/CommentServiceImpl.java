@@ -1,11 +1,15 @@
 package com.newsgroup.newsfeed.service;
 
+import com.newsgroup.newsfeed.dto.CommentRequest;
 import com.newsgroup.newsfeed.dto.CommentResponse;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
-import com.newsgroup.newsfeed.repository.CommentRepository;
-import lombok.RequiredArgsConstructor;
 import com.newsgroup.newsfeed.entity.Users;
+import com.newsgroup.newsfeed.exception.CustomException;
+import com.newsgroup.newsfeed.exception.ExceptionMessages;
+import com.newsgroup.newsfeed.repository.CommentRepository;
+import com.newsgroup.newsfeed.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,35 +18,49 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl {
+public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
 
-    // 특정 게시물의 댓글 목록 조회하는 메서드 (게시물 존재 여부 확인 추가)
+    @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> getComments(Posts post, Users currentUser) {
-        if (post == null) {
-            throw new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
-        }
+    public List<CommentResponse> getComments(Long postId, Users currentUser) {
+        Posts post = getPostById(postId);
         return commentRepository.findByPost(post)
                 .stream()
-                // 현재 사용자 전달
                 .map(comment -> new CommentResponse(comment, currentUser))
                 .collect(Collectors.toList());
     }
-    // 댓글 수정 (댓글 작성자가 아니라면 수정 권한이 없다는 예외 발생)
+
+    @Override
     @Transactional
-    public void updateComment(Users user, Comment comment, String content) {
-        if (!comment.isOwnerOrPostOwner(user)) {
-            throw new IllegalArgumentException("수정 권한이 없습니다.");
-        }
-        comment.updateContent(content);
+    public void updateComment(Users user, Long commentId, CommentRequest request) {
+        Comment comment = getCommentById(commentId);
+        checkCommentPermission(comment, user);
+        comment.updateContent(request.getContent());
     }
-    // 댓글 삭제 (댓글 작성자가 아니라면 삭제 권한이 없다는 예외 발생)
+
+    @Override
     @Transactional
-    public void deleteComment(Users user, Comment comment) {
-        if (!comment.isOwnerOrPostOwner(user)) {
-            throw new IllegalArgumentException("삭제 권한이 없습니다.");
-        }
+    public void deleteComment(Users user, Long commentId) {
+        Comment comment = getCommentById(commentId);
+        checkCommentPermission(comment, user);
         commentRepository.delete(comment);
+    }
+
+    private Posts getPostById(Long postId) {
+        return postRepository.findById(postId)
+                .orElseThrow(() -> new CustomException(ExceptionMessages.POST_NOT_FOUND));
+    }
+
+    private Comment getCommentById(Long commentId) {
+        return commentRepository.findById(commentId)
+                .orElseThrow(() -> new CustomException(ExceptionMessages.COMMENT_NOT_FOUND));
+    }
+
+    private void checkCommentPermission(Comment comment, Users user) {
+        if (!comment.isOwnerOrPostOwner(user)) {
+            throw new CustomException(ExceptionMessages.NO_PERMISSION);
+        }
     }
 }
