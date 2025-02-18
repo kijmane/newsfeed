@@ -1,11 +1,11 @@
-package com.newsgroup.newsfeed.dto.responseDtos.posts;
+package com.newsgroup.newsfeed.dto.responseDtos.post;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class PostsResponseDto {
+public class PostResponseDto {
 
     private Long id;
     private String email;
@@ -15,13 +15,13 @@ public class PostsResponseDto {
     private LocalDateTime updateDate;
     private Long commentsCount;
 
-    public PostsResponseDto(Long id,
-                            String email,
-                            String content,
-                            Long thumbsUpCount,
-                            LocalDateTime createdDate,
-                            LocalDateTime updateDate,
-                            Long commentsCount
+    public PostResponseDto(Long id,
+                           String email,
+                           String content,
+                           Long thumbsUpCount,
+                           LocalDateTime createdDate,
+                           LocalDateTime updateDate,
+                           Long commentsCount
     ) {
         this.id = id;
         this.email = email;
