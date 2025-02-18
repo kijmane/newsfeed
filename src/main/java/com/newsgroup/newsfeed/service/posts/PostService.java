@@ -1,10 +1,13 @@
 package com.newsgroup.newsfeed.service.posts;
 
 
-import com.newsgroup.newsfeed.dto.requestDtos.posts.PostsRequestDto;
-import com.newsgroup.newsfeed.dto.responseDtos.posts.PostsResponseDto;
+import com.newsgroup.newsfeed.dto.requestDtos.post.PostRequestDto;
+import com.newsgroup.newsfeed.dto.responseDtos.post.PostResponseDto;
 import com.newsgroup.newsfeed.entity.Posts;
-import com.newsgroup.newsfeed.repository.PostsRepository;
+import com.newsgroup.newsfeed.entity.Users;
+import com.newsgroup.newsfeed.exception.CustomException;
+import com.newsgroup.newsfeed.exception.ErrorCode;
+import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,16 +21,43 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PostsService {
+public class PostService {
 
-    private final PostsRepository postsRepository;
+    private final PostRepository postRepository;
+
+    // 게시물 생성
+
+    @Transactional
+    public PostResponseDto createPost(Users user, PostRequestDto request) {
+        if (user == null) {
+            throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
+        }
+
+        Posts post = Posts.builder()
+                .user(user)
+                .email(request.getEmail())
+                .content(request.getContent())
+                .thumbsUpCount(0L)
+                .build();
+
+        Posts savedPost = postRepository.save(post);
+        return new PostResponseDto(
+                savedPost.getId(),
+                savedPost.getEmail(),
+                savedPost.getContent(),
+                savedPost.getThumbsUpCount(),
+                savedPost.getCreatedDate(),
+                savedPost.getUpdateDate(),
+                savedPost.getCommentsCount()
+        );
+    }
 
     @Transactional(readOnly = true)
-    public List<PostsResponseDto> findAll(int page, int size) {
+    public List<PostResponseDto> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("modifiedAt").descending());
-        Page<Posts> posts = postsRepository.findAll(pageable);
+        Page<Posts> posts = postRepository.findAll(pageable);
         return posts.getContent().stream()
-                .map(post -> new PostsResponseDto(
+                .map(post -> new PostResponseDto(
                         post.getId(),
                         post.getEmail(),
                         post.getContent(),
@@ -39,8 +69,8 @@ public class PostsService {
     }
 
     @Transactional
-    public PostsResponseDto update(Long id, String email, PostsRequestDto dto) {
-        Posts post = postsRepository.findById(id).orElseThrow(
+    public PostResponseDto update(Long id, String email, PostRequestDto dto) {
+        Posts post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("게시물이 존재하지 않습니다.")
         );
 
@@ -51,9 +81,9 @@ public class PostsService {
         }
 
         post.update(dto.getContent());
-        postsRepository.save(post);
+        postRepository.save(post);
 
-        return  new PostsResponseDto(post.getId(),
+        return  new PostResponseDto(post.getId(),
                 dto.getEmail(),
                 dto.getContent(),
                 dto.getThumbsUpCount(),
@@ -66,7 +96,7 @@ public class PostsService {
     @Transactional
     public void deleteById(Long id, String email) {
 
-        Posts post = postsRepository.findById(id)
+        Posts post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("삭제할 게시글이 존재하지 않습니다."));
 
         // 게시글 작성자와 수정자의 이메일 일치확인
@@ -75,27 +105,27 @@ public class PostsService {
         }
 
 
-        postsRepository.deleteById(id);
+        postRepository.deleteById(id);
     }
 
 
     // 좋아요 수 증가
     @Transactional
     public void increaseThumbsUp(Long postId) {
-        Posts posts = postsRepository.findById(postId)
+        Posts posts = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시물이 존재하지 않습니다."));
 
         posts.increaseThumbsUp();
 
-        postsRepository.save(posts);
+        postRepository.save(posts);
     }
 
     // 댓글 수 증가
     @Transactional
     public void addComment(Long postId) {
-        Posts posts = postsRepository.findById(postId)
+        Posts posts = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시물이 존재하지 않습니다."));
 
-        postsRepository.save(posts);
+        postRepository.save(posts);
     }
 }

@@ -1,11 +1,11 @@
-package com.newsgroup.newsfeed.dto.requestDtos.posts;
+package com.newsgroup.newsfeed.dto.requestDtos.post;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class PostsRequestDto {
+public class PostRequestDto {
 
     private String email;
     private String content;
