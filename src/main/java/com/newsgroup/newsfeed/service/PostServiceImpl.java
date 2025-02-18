@@ -5,6 +5,7 @@ import com.newsgroup.newsfeed.dto.PostResponse;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
+import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional
     public PostResponse createPost(Users user, PostRequest request) {
+        if (user == null) {
+            throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
+        }
+
         Posts post = Posts.builder()
                 .user(user)
                 .content(request.getContent())
@@ -39,8 +44,9 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true)
     public List<PostResponse> getAllPosts() {
         List<Posts> posts = postRepository.findAll();
+
         if (posts.isEmpty()) {
-            throw new CustomException("게시물이 존재하지 않습니다.");
+            throw new CustomException(ErrorCode.POST_NOT_FOUND); // 404
         }
 
         return posts.stream()
