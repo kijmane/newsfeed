@@ -1,36 +1,44 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.entity.User;
-import com.newsgroup.newsfeed.service.UserService;
+import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
+import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
+import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
+import com.newsgroup.newsfeed.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    // 회원가입
-    @PostMapping("/create")
-    public ResponseEntity<User> create(@RequestBody User user) {
-        User createdUser = userService.createUser(user.getEmail(), user.getPassword(), user.getNickname());
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    @PostMapping("/register")
+    public ResponseEntity<UserResponseDto> register(@RequestBody UserRequestDto userRequestDto) {
+        UserResponseDto userResponseDto = userService.registerUser(userRequestDto);
+        return ResponseEntity.ok(userResponseDto);
     }
 
-    // 로그인
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User user) {
-        try {
-            User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
-            return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<String> login(@RequestBody UserRequestDto userRequestDto) {
+        boolean success = userService.loginUser(userRequestDto.getEmail(), userRequestDto.getPassword());
+        if (success) {
+            return ResponseEntity.ok("로그인 성공!");
+        } else {
+            return ResponseEntity.status(401).body("로그인 실패: 이메일 또는 비밀번호가 틀립니다.");
         }
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<UserResponseDto> getUserProfile(@PathVariable String email) {
+        UserResponseDto userResponseDto = userService.getUserProfile(email);
+        return ResponseEntity.ok(userResponseDto);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<UserResponseDto> updateUserProfile(@RequestBody UserProfileRequestDto userProfileRequestDto) {
+        UserResponseDto userResponseDto = userService.updateUserProfile(userProfileRequestDto);
+        return ResponseEntity.ok(userResponseDto);
     }
 }
