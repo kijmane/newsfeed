@@ -36,9 +36,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserProfile(String email) {
-        Users user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 사용자가 없습니다."));
+    public UserResponseDto getUserProfileById(Long id) {
+        Users user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 사용자가 없습니다."));
+        return new UserResponseDto(user);
+    }
+
+    @Override
+    public UserResponseDto getUserProfileByNickname(String nickname) {
+        Users user = userRepository.findByNickname(nickname)
+                .orElseThrow(() -> new IllegalArgumentException("해당 닉네임의 사용자가 없습니다."));
         return new UserResponseDto(user);
     }
 
