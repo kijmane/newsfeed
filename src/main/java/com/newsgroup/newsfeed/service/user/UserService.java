@@ -7,6 +7,7 @@ import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
 public interface UserService {
     UserResponseDto registerUser(UserRequestDto userRequestDto);
     boolean loginUser(String email, String password);
-    UserResponseDto getUserProfile(String email);
+    UserResponseDto getUserProfileById(Long id);
+    UserResponseDto getUserProfileByNickname(String nickname);
     UserResponseDto updateUserProfile(UserProfileRequestDto userProfileRequestDto);
 }
