@@ -41,27 +41,27 @@
 
 - 게시글 API
 
-|기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
-|------|-----|-----|------|-----|-----|
+|기능|HTTP Method|URL|Request Body|Return Values|
+|------|-----|-----|------|-----|
 |게시글 작성|POST|/posts|{ "content": "안녕?" }|200 OK{"id": 1,"author": "사용자 닉네임","content": "안녕?","createdAt": "2025-02-18T14:30:00"}||
-|전체 게시글 조회|GET|/posts||[ { "id": 1, "content": "안녕?" } ]|404 NOT FOUND (게시물이 없음)|
-|게시글 수정|PUT|/posts/{id}|{ "content": "수정된 내용" }|{ "id": 1, "content": "수정된 내용" }|400 Bad Request (작성자만 수정 가능)|
-|게시글 삭제|DELETE|/posts/{id}||{ "message": "게시글 삭제 성공" }|400 Bad Request (작성자만 삭제 가능)|
-|좋아요 증가|POST|/posts/{id}/thumbs-up||{ "message": "좋아요 등록" }|404 NOT FOUND (게시물이 없음)|
+|전체 게시글 조회|GET|/posts||[ { "id": 1, "content": "안녕?" } ]|
+|게시글 수정|PUT|/posts/{id}|{ "content": "수정된 내용" }|{ "id": 1, "content": "수정된 내용" }|
+|게시글 삭제|DELETE|/posts/{id}||{ "message": "게시글 삭제 성공" }|
+|좋아요 증가|POST|/posts/{id}/thumbs-up||{ "message": "좋아요 등록" }|
 
 - 댓글 API
 
-|기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
-|------|-----|-----|------|-----|-----|
-|게시물 별 댓글 목록 조회|GET|/api/comments/{postId}||{ "postId": 1, "comments": [...] }|404 NOT FOUND (게시물이 없음)|
-|댓글 수정|PUT|/api/comments/{commentId}|{ "content": "수정된 댓글 내용" }|{ "commentId": 15, "content": "수정된 댓글" }|403 FORBIDDEN (권한 없음)|
-|댓글 삭제|DELETE|/api/comments/{commentId}||{ "message": "댓글 삭제 성공" }|403 FORBIDDEN (권한 없음)|
+|기능|HTTP Method|URL|Request Body|Return Values|
+|------|-----|-----|------|-----|
+|게시물 별 댓글 목록 조회|GET|/api/comments/{postId}||{ "postId": 1, "comments": [...] }|
+|댓글 수정|PUT|/api/comments/{commentId}|{ "content": "수정된 댓글 내용" }|{ "commentId": 15, "content": "수정된 댓글" }|
+|댓글 삭제|DELETE|/api/comments/{commentId}||{ "message": "댓글 삭제 성공" }|
 
 - 팔로우 API
 
-|기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
-|------|-----|-----|------|-----|-----|
-|유저 팔로우|POST|/users/{nickname}/follow||{ "message": "test회원을 팔로우합니다." }|404 NOT FOUND (유저 없음)|
-|유저 언팔로우|DELETE|/users/{nickname}/unfollow||{ "message": "test회원을 언팔로우합니다." }||
-|내 팔로워 목록 조회|GET|/users/my/followers||{ "followers": ["test1", "test2"] }||
-|내 팔로잉 목록 조회|GET|/users/my/followings||{ "followings": ["test1", "test2"] }||
+|기능|HTTP Method|URL|Request Body|Return Values|
+|------|-----|-----|------|-----|
+|유저 팔로우|POST|/users/{nickname}/follow||{ "message": "test회원을 팔로우합니다." }|
+|유저 언팔로우|DELETE|/users/{nickname}/unfollow||{ "message": "test회원을 언팔로우합니다." }|
+|내 팔로워 목록 조회|GET|/users/my/followers||{ "followers": ["test1", "test2"] }|
+|내 팔로잉 목록 조회|GET|/users/my/followings||{ "followings": ["test1", "test2"] }|
