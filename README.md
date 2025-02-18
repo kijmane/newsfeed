@@ -42,7 +42,7 @@
 - API 상세 명세 (게시글 API)
 
 |기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
-|-------------|-----|------------|
+|-----|-----|-----|-----|-----|-----|
 |404 Not Found|요청 데이터 오류|{ "error": "해당 리소스가 존재하지 않습니다." }|
 |403 Forbidden|권한없음|{ "error": "로그인하지 않았거나, 해당 작업을 수행할 권한이 없습니다." }|
 |400 Bad Request|요청 데이터 오류|{ "error": "필수 값이 누락되었습니다." }|
