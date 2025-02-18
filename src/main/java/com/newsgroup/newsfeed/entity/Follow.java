@@ -27,6 +27,7 @@ public class Follow {
 
     @CreatedDate
     private LocalDateTime createdDate;
+
     private LocalDateTime unfollowDate; //언팔로우 날짜 기록용 필드
 
     public Follow(FollowDto dto) {
