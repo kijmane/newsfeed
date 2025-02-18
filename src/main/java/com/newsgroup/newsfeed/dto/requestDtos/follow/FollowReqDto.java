@@ -9,9 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class FollowReqDto {
 
-    @NotNull
     private Users follower;
 
-    @NotNull
     private Users followed;
+
+    public FollowReqDto(Users followed, Users follower) {
+        this.followed = followed;
+        this.follower = follower;
+    }
 }
