@@ -23,16 +23,4 @@ public class Users extends BaseEntity {
 
     @Column(nullable = false)
     private String nickname;
-
-    private Long followNum;
-
-    private Long followingNum;
-
-    public void setUserFollow() {
-        this.followNum++;
-    }
-
-    public void followed() {
-        this.followingNum++;
-    }
 }
