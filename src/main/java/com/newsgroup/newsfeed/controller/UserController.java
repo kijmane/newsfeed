@@ -30,9 +30,15 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<UserResponseDto> getUserProfile(@PathVariable String email) {
-        UserResponseDto userResponseDto = userService.getUserProfile(email);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<UserResponseDto> getUserProfileById(@PathVariable Long id) {
+        UserResponseDto userResponseDto = userService.getUserProfileById(id);
+        return ResponseEntity.ok(userResponseDto);
+    }
+
+    @GetMapping("/nickname/{nickname}")
+    public ResponseEntity<UserResponseDto> getUserProfileByNickname(@PathVariable String nickname) {
+        UserResponseDto userResponseDto = userService.getUserProfileByNickname(nickname);
         return ResponseEntity.ok(userResponseDto);
     }
 
