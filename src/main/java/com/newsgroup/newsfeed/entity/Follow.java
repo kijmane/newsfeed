@@ -1,11 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowDto;
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowedDto;
-
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowedReqDto;
-import com.newsgroup.newsfeed.dto.requestDtos.follow.SearchMyFollowingReqDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -23,8 +23,8 @@ public class FollowController {
 //
 //    }
 
-    @PostMapping("/users/{username}/followings")
-    public void findFollow(@PathVariable String username) {
-        service.findByNickname()
-    }
+//    @PostMapping("/users/{username}/followings")
+//    public void findFollow(@PathVariable String username) {
+//        service.findByNickname()
+//    }
 }
