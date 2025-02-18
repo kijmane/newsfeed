@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "users")
 public class Users extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,10 +24,19 @@ public class Users extends BaseEntity {
 
     @Column(nullable = false)
     private String nickname;
+    private String password;
+    private Long followNum = 0L;
+    private Long followingNum = 0L;
 
-    private Long followNum;
+    public Users(String email, String nickname, String password) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
 
-    private Long followingNum;
+    public void updateNickname(String newNickname) {
+        this.nickname = newNickname;
+    }
 
     public void setUserFollow() {
         this.followNum++;

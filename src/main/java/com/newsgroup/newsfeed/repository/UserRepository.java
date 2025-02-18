@@ -1,9 +1,10 @@
 package com.newsgroup.newsfeed.repository;
 
-import com.newsgroup.newsfeed.entity.User;
+import com.newsgroup.newsfeed.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email); // 이메일을 통해 사용자 조회
+import java.util.Optional;
 
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Optional<Users> findByEmail(String email);
 }
