@@ -6,7 +6,7 @@ import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
-import com.newsgroup.newsfeed.exception.ExceptionMessages;
+import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.CommentRepository;
 import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,17 +51,17 @@ public class CommentServiceImpl implements CommentService {
     // 게시물 ID를 기반으로 게시물 조회 : 해당 ID 게시물 존재하지 않을 시 예외 발생
     private Posts getPostById(Long postId) {
         return postRepository.findById(postId)
-                .orElseThrow(() -> new CustomException(ExceptionMessages.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
     // 댓글 ID를 기반으로 댓글 조회 : 해당 ID 댓글 존재하지 않을 시 예외 발생
     private Comment getCommentById(Long commentId) {
         return commentRepository.findById(commentId)
-                .orElseThrow(() -> new CustomException(ExceptionMessages.COMMENT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
     }
     // 댓글 수정/삭제 권한 확인 : 댓글 작성자 , 댓글 달린 게시물 작성자만 가능
     private void checkCommentPermission(Comment comment, Users user) {
         if (!comment.isOwnerOrPostOwner(user)) {
-            throw new CustomException(ExceptionMessages.NO_PERMISSION);
+            throw new CustomException(ErrorCode.NO_PERMISSION);
         }
     }
 }

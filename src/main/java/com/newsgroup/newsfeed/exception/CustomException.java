@@ -1,8 +1,13 @@
 package com.newsgroup.newsfeed.exception;
 
+import lombok.Getter;
+
+@Getter
 public class CustomException extends RuntimeException {
-    // 예외 클래스 : 예외 발생 시 사용자 정의 메시지 전달
-    public CustomException(String message) {
-        super(message);
+    private final ErrorCode errorCode;
+
+    public CustomException(ErrorCode errorCode) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
     }
 }
