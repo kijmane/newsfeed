@@ -34,7 +34,7 @@
 - 공통 예외 응답
 
 |상태코드|설명|예시 응답|
-|-------------|-----|------------|
+|-------------|-------|--------------|
 |404 Not Found|요청 데이터 오류|{ "error": "해당 리소스가 존재하지 않습니다." }|
 |403 Forbidden|권한없음|{ "error": "로그인하지 않았거나, 해당 작업을 수행할 권한이 없습니다." }|
 |400 Bad Request|요청 데이터 오류|{ "error": "필수 값이 누락되었습니다." }|
@@ -65,5 +65,3 @@
 |유저 언팔로우|DELETE|/users/{nickname}/unfollow||{ "message": "test회원을 언팔로우합니다." }||
 |내 팔로워 목록 조회|GET|/users/my/followers||{ "followers": ["test1", "test2"] }||
 |내 팔로잉 목록 조회|GET|/users/my/followings||{ "followings": ["test1", "test2"] }||
-
-
