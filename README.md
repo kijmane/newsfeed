@@ -43,7 +43,7 @@
 
 |기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
 |------|-----|-----|------|-----|-----|
-|게시글 작성|POST|/posts|{ "content": "안녕?" }|{"id": 1, "content": "안녕?" }||
+|게시글 작성|POST|/posts|{ "content": "안녕?" }|200 OK{"id": 1,"author": "사용자 닉네임","content": "안녕?","createdAt": "2025-02-18T14:30:00"}||
 |전체 게시글 조회|GET|/posts||[ { "id": 1, "content": "안녕?" } ]|404 NOT FOUND (게시물이 없음)|
 |게시글 수정|PUT|/posts/{id}|{ "content": "수정된 내용" }|{ "id": 1, "content": "수정된 내용" }|400 Bad Request (작성자만 수정 가능)|
 |게시글 삭제|DELETE|/posts/{id}||{ "message": "게시글 삭제 성공" }|400 Bad Request (작성자만 삭제 가능)|
