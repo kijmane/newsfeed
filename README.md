@@ -39,12 +39,31 @@
 |403 Forbidden|권한없음|{ "error": "로그인하지 않았거나, 해당 작업을 수행할 권한이 없습니다." }|
 |400 Bad Request|요청 데이터 오류|{ "error": "필수 값이 누락되었습니다." }|
 
-- API 상세 명세 (게시글 API)
+- 게시글 API
 
 |기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
-|-----|-----|-----|-----|-----|-----|
-|404 Not Found|요청 데이터 오류|{ "error": "해당 리소스가 존재하지 않습니다." }|
-|403 Forbidden|권한없음|{ "error": "로그인하지 않았거나, 해당 작업을 수행할 권한이 없습니다." }|
-|400 Bad Request|요청 데이터 오류|{ "error": "필수 값이 누락되었습니다." }|
+|------|-----|-----|------|-----|-----|
+|게시글 작성|POST|/posts|{ "content": "안녕?" }|{"id": 1, "content": "안녕?" }||
+|전체 게시글 조회|GET|/posts||[ { "id": 1, "content": "안녕?" } ]|404 NOT FOUND (게시물이 없음)|
+|게시글 수정|PUT|/posts/{id}|{ "content": "수정된 내용" }|{ "id": 1, "content": "수정된 내용" }|400 Bad Request (작성자만 수정 가능)|
+|게시글 삭제|DELETE|/posts/{id}||{ "message": "게시글 삭제 성공" }|400 Bad Request (작성자만 삭제 가능)|
+|좋아요 증가|POST|/posts/{id}/thumbs-up||{ "message": "좋아요 등록" }|404 NOT FOUND (게시물이 없음)|
+
+- 댓글 API
+
+|기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
+|------|-----|-----|------|-----|-----|
+|게시물 별 댓글 목록 조회|GET|/api/comments/{postId}||{ "postId": 1, "comments": [...] }|404 NOT FOUND (게시물이 없음)|
+|댓글 수정|PUT|/api/comments/{commentId}|{ "content": "수정된 댓글 내용" }|{ "commentId": 15, "content": "수정된 댓글" }|403 FORBIDDEN (권한 없음)|
+|댓글 삭제|DELETE|/api/comments/{commentId}||{ "message": "댓글 삭제 성공" }|403 FORBIDDEN (권한 없음)|
+
+- 팔로우 API
+
+|기능|HTTP Method|URL|Request Body|Return Values|Exception/Error|
+|------|-----|-----|------|-----|-----|
+|유저 팔로우|POST|/users/{nickname}/follow||{ "message": "test회원을 팔로우합니다." }|404 NOT FOUND (유저 없음)|
+|유저 언팔로우|DELETE|/users/{nickname}/unfollow||{ "message": "test회원을 언팔로우합니다." }||
+|내 팔로워 목록 조회|GET|/users/my/followers||{ "followers": ["test1", "test2"] }||
+|내 팔로잉 목록 조회|GET|/users/my/followings||{ "followings": ["test1", "test2"] }||
 
 
