@@ -1,9 +1,9 @@
 package com.newsgroup.newsfeed.service.user;
 
 import com.newsgroup.newsfeed.config.BCryptPasswordEncoder;
-import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
-import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
-import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
+import com.newsgroup.newsfeed.dto.request.user.UserRequestDto;
+import com.newsgroup.newsfeed.dto.response.user.UserResponseDto;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequestDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.LoginEnum;
 import com.newsgroup.newsfeed.exception.CustomException;

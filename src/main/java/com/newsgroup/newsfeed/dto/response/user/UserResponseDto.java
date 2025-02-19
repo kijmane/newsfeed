@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.responseDto.user;
+package com.newsgroup.newsfeed.dto.response.user;
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;
