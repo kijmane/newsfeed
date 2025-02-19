@@ -6,7 +6,6 @@ import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class PostController {
     // 게시글 추가 (인증된 사용자만 가능)
     @PostMapping("/posts")
     public ResponseEntity<PostResponse> createPost(
-            @AuthenticationPrincipal Users user,
+            @RequestHeader Users user,
             @RequestBody PostRequest request
     ) {
         PostResponse response = postService.createPost(user, request);
