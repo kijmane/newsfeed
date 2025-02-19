@@ -16,21 +16,20 @@ public class Comment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Users user; // 댓글 작성자
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
-    private Posts post; // 해당 댓글이 달린 게시물
+    private Posts post;
 
     @Column(nullable = false)
-    private String content; // 댓글 내용
+    private String content;
 
    public void updateContent(String content) {
-       this.content = content; // 댓글 내용 수정
+       this.content = content;
    }
 
    public boolean isOwnerOrPostOwner(Users user) {
-       // 댓글을 수정/삭제 할 수 있는 권한이 있는지 확인
        return this.user.equals(user) || this.post != null && this.post.getUser() != null && this.post.getUser().equals(user);
    }
 }
