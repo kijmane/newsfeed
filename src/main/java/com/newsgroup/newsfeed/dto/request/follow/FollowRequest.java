@@ -12,7 +12,7 @@ public class FollowRequest {
 
     private Users followed;
 
-    public FollowRequest(Users followed, Users follower) {
+    public FollowRequest(Users follower, Users followed) {
         this.followed = followed;
         this.follower = follower;
     }
