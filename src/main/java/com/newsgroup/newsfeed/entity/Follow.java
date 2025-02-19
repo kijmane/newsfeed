@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
-import com.newsgroup.newsfeed.dto.requestDto.follow.FollowRequest;
-import com.newsgroup.newsfeed.dto.requestDto.follow.FollowedRequest;
+import com.newsgroup.newsfeed.dto.request.follow.FollowRequest;
+import com.newsgroup.newsfeed.dto.request.follow.FollowedRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,10 +1,10 @@
 package com.newsgroup.newsfeed.service.follow;
 
-import com.newsgroup.newsfeed.dto.responseDto.follow.FollowResponse;
-import com.newsgroup.newsfeed.dto.responseDto.follow.SearchFollowerResponse;
-import com.newsgroup.newsfeed.dto.responseDto.follow.UnFollowResponse;
+import com.newsgroup.newsfeed.dto.response.follow.FollowResponse;
+import com.newsgroup.newsfeed.dto.response.follow.SearchFollowerResponse;
+import com.newsgroup.newsfeed.dto.response.follow.UnFollowResponse;
 import com.newsgroup.newsfeed.entity.Follow;
-import com.newsgroup.newsfeed.dto.requestDto.follow.FollowRequest;
+import com.newsgroup.newsfeed.dto.request.follow.FollowRequest;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.FollowEnum;
 import com.newsgroup.newsfeed.repository.FollowRepository;
@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 @Repository
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class FollowServiceImpl implements FollowService {
     public List<SearchFollowerResponse> searchFollowList(Users targetUser, FollowEnum followEnum) {
         // Users -> SearchFollowerRespDto 변환
         return findAll().stream()
-                .map(follow -> followEnum.equals(FollowEnum.followers)
+                .map(follow -> followEnum.equals(FollowEnum.FOLLOWERS)
                         ? follow.getFollower()
                         : follow.getFollowed()
                 )
@@ -58,10 +59,10 @@ public class FollowServiceImpl implements FollowService {
         targetFollow.getFollower().decreaseFollowingCount();
         targetFollow.getFollowed().decreaseFollowCount();
 
-        UnFollowResponse unFollowResponse = new UnFollowResponse(targetFollow);
+        UnFollowResponse unFollowRespDto = new UnFollowResponse(targetFollow);
         deleteById(targetFollow.getId());
 
-        return unFollowResponse;
+        return unFollowRespDto;
     }
 
 
@@ -80,7 +81,7 @@ public class FollowServiceImpl implements FollowService {
                 .findFirst().orElse(null);
     }
 
-    private void deleteById(java.lang.Long id) {
+    private void deleteById(Long id) {
         followRepo.deleteById(id);
     }
 
