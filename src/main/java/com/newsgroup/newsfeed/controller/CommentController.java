@@ -6,9 +6,11 @@ import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
 import com.newsgroup.newsfeed.dto.response.comment.CommentSaveRespDto;
 import com.newsgroup.newsfeed.entity.Comment;
+import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 
+import com.newsgroup.newsfeed.service.posts.PostService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,15 +27,15 @@ import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 public class CommentController {
 
     private final CommentService commentService;
+    private final PostService postService;
 
     @PostMapping("/new/{postId}")
     public ResponseEntity<CommentSaveRespDto> newComment(@RequestBody String contents,
                                                          @PathVariable Long postId,
                                                          HttpSession session) {
-        /* postById 로직 */
-
+        Posts post = postService.findById(postId);
         Users user = getLoginUser(session);
-        Comment comment = new Comment(user, contents);
+        Comment comment = new Comment(user, contents, post);
         CommentSaveRespDto commentSaveRespDto = commentService.saveComment(comment);
 
         return ResponseEntity.ok().body(commentSaveRespDto);
