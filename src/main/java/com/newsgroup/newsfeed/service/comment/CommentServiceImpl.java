@@ -61,7 +61,7 @@ public class CommentServiceImpl implements CommentService {
 
     private void checkCommentPermission(Comment comment, Users user) {
         if (!comment.isOwnerOrPostOwner(user)) {
-            throw new CustomException(ErrorCode.NO_PERMISSION);
+            throw new CustomException(ErrorCode.NO_PERMISSION); //
         }
     }
 }
