@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.service.comment;
 
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.requestDto.comment.CommentRequest;
+import com.newsgroup.newsfeed.dto.responseDto.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Users;
 import java.util.List;
 
