@@ -1,9 +1,9 @@
 package com.newsgroup.newsfeed.service.user;
 
 import com.newsgroup.newsfeed.config.BCryptPasswordEncoder;
-import com.newsgroup.newsfeed.dto.request.user.UserRequestDto;
-import com.newsgroup.newsfeed.dto.response.user.UserResponseDto;
-import com.newsgroup.newsfeed.dto.request.user.UserProfileRequestDto;
+import com.newsgroup.newsfeed.dto.request.user.UserRequest;
+import com.newsgroup.newsfeed.dto.response.user.UserResponse;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.LoginEnum;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -23,11 +23,11 @@ public class UserServiceImpl implements UserService {
     private final HttpSession session;
 
     @Override
-    public UserResponseDto registerUser(UserRequestDto userRequestDto) {
-        String encodedPassword = passwordEncoder.encode(userRequestDto.getPassword());
-        Users user = new Users(userRequestDto.getEmail(), userRequestDto.getNickname(), encodedPassword);
+    public UserResponse registerUser(UserRequest userRequest) {
+        String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
+        Users user = new Users(userRequest.getEmail(), userRequest.getNickname(), encodedPassword);
         Users savedUser = userRepository.save(user);
-        return new UserResponseDto(savedUser);
+        return new UserResponse(savedUser);
     }
 
     @Override
@@ -44,33 +44,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserProfileById(Long id) {
+    public UserResponse getUserProfileById(Long id) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-        return new UserResponseDto(user);
+        return new UserResponse(user);
     }
 
     @Override
-    public UserResponseDto getUserProfileByNickname(String nickname) {
+    public UserResponse getUserProfileByNickname(String nickname) {
         Users user = userRepository.findByNickname(nickname)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-        return new UserResponseDto(user);
+        return new UserResponse(user);
     }
 
     @Override
-    public UserResponseDto updateUserProfile(UserProfileRequestDto userProfileRequestDto) {
-        Users user = userRepository.findByEmail(userProfileRequestDto.getEmail())
+    public UserResponse updateUserProfile(UserProfileRequest userProfileRequest) {
+        Users user = userRepository.findByEmail(userProfileRequest.getEmail())
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
         // 비밀번호 검증
-        if (!passwordEncoder.matches(userProfileRequestDto.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(userProfileRequest.getPassword(), user.getPassword())) {
             throw new CustomException(ErrorCode.UNAUTHORIZED_PASSWORD_NOT_FOUND);
         }
 
         // 닉네임 변경 후 저장
-        user.updateNickname(userProfileRequestDto.getNewNickname());
+        user.updateNickname(userProfileRequest.getNewNickname());
         userRepository.save(user);
 
-        return new UserResponseDto(user);
+        return new UserResponse(user);
     }
 }

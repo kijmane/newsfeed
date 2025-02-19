@@ -1,13 +1,13 @@
 package com.newsgroup.newsfeed.service.user;
 
-import com.newsgroup.newsfeed.dto.request.user.UserRequestDto;
-import com.newsgroup.newsfeed.dto.response.user.UserResponseDto;
-import com.newsgroup.newsfeed.dto.request.user.UserProfileRequestDto;
+import com.newsgroup.newsfeed.dto.request.user.UserRequest;
+import com.newsgroup.newsfeed.dto.response.user.UserResponse;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
 
 public interface UserService {
-    UserResponseDto registerUser(UserRequestDto userRequestDto);
+    UserResponse registerUser(UserRequest userRequest);
     boolean loginUser(String email, String password);
-    UserResponseDto getUserProfileById(Long id);
-    UserResponseDto getUserProfileByNickname(String nickname);
-    UserResponseDto updateUserProfile(UserProfileRequestDto userProfileRequestDto);
+    UserResponse getUserProfileById(Long id);
+    UserResponse getUserProfileByNickname(String nickname);
+    UserResponse updateUserProfile(UserProfileRequest userProfileRequest);
 }
