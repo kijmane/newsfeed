@@ -2,10 +2,12 @@ package com.newsgroup.newsfeed.dto.response.user;
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class UserResponse {
-    private java.lang.Long id;
+    private Long id;
     private String email;
     private String nickname;
 
