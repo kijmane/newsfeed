@@ -1,10 +1,9 @@
 package com.newsgroup.newsfeed.service.follow;
 
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
-import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
-import com.newsgroup.newsfeed.dto.respondDtos.follow.SearchFollowerRespDto;
-import com.newsgroup.newsfeed.dto.respondDtos.follow.UnFollowRespDto;
-import com.newsgroup.newsfeed.entity.Follow;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.FollowRespDto;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.SearchFollowerRespDto;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.UnFollowRespDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.FollowEnum;
 

@@ -1,12 +1,8 @@
-package com.newsgroup.newsfeed.dto.respondDtos.follow;
+package com.newsgroup.newsfeed.dto.responseDtos.follow;
 
-import com.newsgroup.newsfeed.entity.Follow;
 import com.newsgroup.newsfeed.entity.Users;
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

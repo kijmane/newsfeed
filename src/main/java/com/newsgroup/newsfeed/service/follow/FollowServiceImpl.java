@@ -1,8 +1,8 @@
 package com.newsgroup.newsfeed.service.follow;
 
-import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
-import com.newsgroup.newsfeed.dto.respondDtos.follow.SearchFollowerRespDto;
-import com.newsgroup.newsfeed.dto.respondDtos.follow.UnFollowRespDto;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.FollowRespDto;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.SearchFollowerRespDto;
+import com.newsgroup.newsfeed.dto.responseDtos.follow.UnFollowRespDto;
 import com.newsgroup.newsfeed.entity.Follow;
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
 import com.newsgroup.newsfeed.entity.Users;
@@ -26,8 +26,8 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public FollowRespDto follow(FollowReqDto dto) {
         Follow follow = new Follow(dto);
-        follow.getFollowed().setUserFollow();
-        follow.getFollower().setUserFollowing();
+        follow.getFollowed().increaseFollowCount();
+        follow.getFollower().increaseFollowingCount();
         followRepo.save(follow);
 
         return new FollowRespDto(follow);
@@ -55,8 +55,8 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public UnFollowRespDto unFollow(Users target, Users unfollowUser) {
         Follow targetFollow = findFollow(target, unfollowUser);
-        targetFollow.getFollower().setUserUnFollowing();
-        targetFollow.getFollowed().setUserUnFollow();
+        targetFollow.getFollower().decreaseFollowingCount();
+        targetFollow.getFollowed().decreaseFollowCount();
 
         UnFollowRespDto unFollowRespDto = new UnFollowRespDto(targetFollow);
         deleteById(targetFollow.getId());
