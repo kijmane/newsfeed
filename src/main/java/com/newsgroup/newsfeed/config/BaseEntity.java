@@ -11,13 +11,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
+// 다른 엔티티 전역에 쓰일 필드를 정의하는 클래스
 @Getter
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // JPA Auditing 활성화
 public abstract class BaseEntity {
 
     @CreatedDate
-    @Column(updatable = false)
     private LocalDateTime createdDate;
 
     @LastModifiedDate
