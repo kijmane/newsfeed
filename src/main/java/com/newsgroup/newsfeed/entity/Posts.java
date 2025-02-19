@@ -29,8 +29,8 @@ public class Posts extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
-    private Users user; // 게시물 작성자
+    private Users user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>(); // 해당 게시물의 댓글 리스트
+    private List<Comment> comments = new ArrayList<>();
 }

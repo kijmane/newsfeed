@@ -18,7 +18,6 @@ public class PostController {
 
     private final PostService postService;
 
-    // 게시물 추가 (인증된 사용자만 가능)
     @PostMapping
     public ResponseEntity<PostResponse> createPost(
             @AuthenticationPrincipal Users user,
@@ -28,7 +27,6 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-    // 전체 게시물 조회 (모든 게시물 조회해서 리스트 형태로 반환)
     @GetMapping
     public ResponseEntity<List<PostResponse>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
