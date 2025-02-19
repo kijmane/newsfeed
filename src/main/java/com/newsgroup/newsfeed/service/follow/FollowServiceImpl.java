@@ -80,7 +80,7 @@ public class FollowServiceImpl implements FollowService {
                 .findFirst().orElse(null);
     }
 
-    private void deleteById(java.lang.Long id) {
+    private void deleteById(Long id) {
         followRepo.deleteById(id);
     }
 
