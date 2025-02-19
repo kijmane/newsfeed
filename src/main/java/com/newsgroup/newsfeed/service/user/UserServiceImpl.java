@@ -2,7 +2,7 @@ package com.newsgroup.newsfeed.service.user;
 
 import com.newsgroup.newsfeed.config.BCryptPasswordEncoder;
 import com.newsgroup.newsfeed.dto.requestDto.user.UserRequest;
-import com.newsgroup.newsfeed.dto.responseDto.user.UserResponse;
+import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
 import com.newsgroup.newsfeed.dto.requestDto.user.UserProfileRequest;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public UserResponse registerUser(UserRequest userRequest) {
+    public UserResponseDto registerUser(UserRequest userRequest) {
         String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
         Users user = new Users(userRequest.getEmail(), userRequest.getNickname(), encodedPassword);
         Users savedUser = userRepository.save(user);
-        return new UserResponse(savedUser);
+        return new UserResponseDto(savedUser);
     }
 
     @Override
@@ -38,21 +38,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserProfileById(java.lang.Long id) {
+    public UserResponseDto getUserProfileById(java.lang.Long id) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-        return new UserResponse(user);
+        return new UserResponseDto(user);
     }
 
     @Override
-    public UserResponse getUserProfileByNickname(String nickname) {
+    public UserResponseDto getUserProfileByNickname(String nickname) {
         Users user = userRepository.findByNickname(nickname)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-        return new UserResponse(user);
+        return new UserResponseDto(user);
     }
 
     @Override
-    public UserResponse updateUserProfile(UserProfileRequest userProfileRequest) {
+    public UserResponseDto updateUserProfile(UserProfileRequest userProfileRequest) {
         Users user = userRepository.findByEmail(userProfileRequest.getEmail())
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
@@ -65,6 +65,6 @@ public class UserServiceImpl implements UserService {
         user.updateNickname(userProfileRequest.getNewNickname());
         userRepository.save(user);
 
-        return new UserResponse(user);
+        return new UserResponseDto(user);
     }
 }

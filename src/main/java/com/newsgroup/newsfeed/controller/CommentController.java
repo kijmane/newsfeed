@@ -6,7 +6,6 @@ import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,16 +18,14 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/{postId}")
-    public ResponseEntity<List<CommentResponse>> getComments(
-            @AuthenticationPrincipal Users user,
+    public ResponseEntity<List<CommentResponse>> getComments(Users user,
             @PathVariable java.lang.Long postId
     ) {
         return ResponseEntity.ok(commentService.getComments(postId, user));
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<Void> updateComment(
-            @AuthenticationPrincipal Users user,
+    public ResponseEntity<Void> updateComment(Users user,
             @PathVariable java.lang.Long commentId,
             @RequestBody CommentRequest request
     ) {
@@ -38,7 +35,7 @@ public class CommentController {
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(
-            @AuthenticationPrincipal Users user,
+         Users user,
             @PathVariable java.lang.Long commentId
     ) {
         commentService.deleteComment(user, commentId);

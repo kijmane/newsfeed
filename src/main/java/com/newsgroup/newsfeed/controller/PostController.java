@@ -1,12 +1,11 @@
 package com.newsgroup.newsfeed.controller;
 
 import com.newsgroup.newsfeed.dto.requestDto.post.PostRequest;
-import com.newsgroup.newsfeed.dto.responseDto.post.PostResponse;
+import com.newsgroup.newsfeed.dto.responseDto.post.PostResponseDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,27 +18,26 @@ public class PostController {
 
     // 게시글 추가 (인증된 사용자만 가능)
     @PostMapping("/posts")
-    public ResponseEntity<PostResponse> createPost(
-            @AuthenticationPrincipal Users user,
+    public ResponseEntity<PostResponseDto> createPost(Users user,
             @RequestBody PostRequest request
     ) {
-        PostResponse response = postService.createPost(user, request);
+        PostResponseDto response = postService.createPost(user, request);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 전체조회 (15개 게시물 조회)
     @GetMapping ("/posts")
-    public ResponseEntity<List<PostResponse>> findAll(
+    public ResponseEntity<List<PostResponseDto>> findAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "15") int size
     ) {
-        List<PostResponse> result = postService.findAll(page, size);
+        List<PostResponseDto> result = postService.findAll(page, size);
         return ResponseEntity.ok(result);
     }
 
     // 게시글 수정 (작성자만 수정가능)
     @PutMapping ("/posts/{id}")
-    public ResponseEntity<PostResponse> update(
+    public ResponseEntity<PostResponseDto> update(
             @PathVariable Long id,
             @RequestBody String email,
             @RequestBody PostRequest dto

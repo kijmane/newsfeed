@@ -2,7 +2,7 @@ package com.newsgroup.newsfeed.service.posts;
 
 
 import com.newsgroup.newsfeed.dto.requestDto.post.PostRequest;
-import com.newsgroup.newsfeed.dto.responseDto.post.PostResponse;
+import com.newsgroup.newsfeed.dto.responseDto.post.PostResponseDto;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -28,7 +28,7 @@ public class PostServiceImpl implements PostService {
     // 게시글 생성 (인증된 사용자만 가능)
     @Transactional
     @Override
-    public PostResponse createPost(Users user, PostRequest request) {
+    public PostResponseDto createPost(Users user, PostRequest request) {
         if (user == null) {
             throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
         }
@@ -41,7 +41,7 @@ public class PostServiceImpl implements PostService {
                 .build();
 
         Posts savedPost = postRepository.save(post);
-        return new PostResponse(
+        return new PostResponseDto(
                 savedPost.getId(),
                 savedPost.getEmail(),
                 savedPost.getContent(),
@@ -55,11 +55,11 @@ public class PostServiceImpl implements PostService {
     // 전체 게시글 조회
     @Transactional(readOnly = true)
     @Override
-    public List<PostResponse> findAll(int page, int size) {
+    public List<PostResponseDto> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("modifiedAt").descending()); // 페이지네이션
         Page<Posts> posts = postRepository.findAll(pageable);
         return posts.getContent().stream()
-                .map(post -> new PostResponse(
+                .map(post -> new PostResponseDto(
                         post.getId(),
                         post.getEmail(),
                         post.getContent(),
@@ -73,7 +73,7 @@ public class PostServiceImpl implements PostService {
     // 게시글 수정 (작성자만 수정가능)
     @Transactional
     @Override
-    public PostResponse update(Long id, String email, PostRequest dto) {
+    public PostResponseDto update(Long id, String email, PostRequest dto) {
         Posts post = postRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 게시글이 없을경우
 
@@ -84,7 +84,7 @@ public class PostServiceImpl implements PostService {
 
         post.update(dto.getContent());
         postRepository.save(post);
-        return  new PostResponse(post.getId(),
+        return  new PostResponseDto(post.getId(),
                 dto.getEmail(),
                 dto.getContent(),
                 dto.getThumbsUpCount(),
