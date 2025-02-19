@@ -18,6 +18,4 @@ public interface FollowService {
     List<SearchFollowerResponse> searchFollowList(Users targetUser, FollowEnum followEnum);
 
     UnFollowResponse unFollow(Users target, Users unfollowUser);
-
-//    Follow findByNickname(String follower, String followed);
 }

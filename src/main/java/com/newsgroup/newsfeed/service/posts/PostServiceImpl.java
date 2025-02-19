@@ -29,28 +29,24 @@ public class PostServiceImpl implements PostService {
     @Transactional
     @Override
     public PostResponse createPost(Users user, PostRequest request) {
-//        Users user = session.getAttribute("세션명");
         if (user == null) {
             throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
         } // 로그인한 유저가 맞나?
 
         Posts post = Posts.builder()
                 .user(user)
-                .email(request.getEmail())
                 .content(request.getContent())
                 .thumbsUpCount(0L)
                 .build();
 
         Posts savedPost = postRepository.save(post);
-        return new PostResponse(
-                savedPost.getId(),
-                savedPost.getEmail(),
-                savedPost.getContent(),
-                savedPost.getThumbsUpCount(),
-                savedPost.getCreatedDate(),
-                savedPost.getUpdateDate(),
-                savedPost.getCommentsCount()
-        );
+//        return new PostResponse(
+//                savedPost.getId(),
+//                savedPost.getContent(),
+//                savedPost.getThumbsUpCount(),
+//                savedPost.getCommentsCount()
+//        );
+        return new PostResponse(savedPost);
     }
 
     // 전체 게시글 조회
@@ -62,7 +58,6 @@ public class PostServiceImpl implements PostService {
         return posts.getContent().stream()
                 .map(post -> new PostResponse(
                         post.getId(),
-                        post.getEmail(),
                         post.getContent(),
                         post.getThumbsUpCount(),
                         post.getCreatedDate(),
@@ -79,19 +74,17 @@ public class PostServiceImpl implements PostService {
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
 
         // 작성자 검증
-        if (!post.getEmail().equals(email)) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE);
-        }
-
+//        if (!post.getEmail().equals(email)) {
+//            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE);
+//        }
         post.update(dto.getContent());
         postRepository.save(post);
         return  new PostResponse(post.getId(),
-                dto.getEmail(),
-                dto.getContent(),
-                dto.getThumbsUpCount(),
-                dto.getCreatedDate(),
-                dto. getUpdateDate(),
-                dto.getCommentsCount());
+                post.getContent(),
+                post.getThumbsUpCount(),
+                post.getCreatedDate(),
+                post. getUpdateDate(),
+                post.getCommentsCount());
     }
 
     @Transactional
@@ -100,9 +93,9 @@ public class PostServiceImpl implements PostService {
         Posts post = postRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 수정할 게시글이 없을 경우
         // 게시글 작성자와 수정자의 이메일 일치확인
-        if (!post.getEmail().equals(email)) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_DELETE); // 삭제 권한이 없을 경우
-        }
+//        if (!post.getEmail().equals(email)) {
+//            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_DELETE); // 삭제 권한이 없을 경우
+//        }
         postRepository.deleteById(id);
     }
 
