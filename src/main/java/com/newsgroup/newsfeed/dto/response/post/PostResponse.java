@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/newsgroup/newsfeed/dto/responseDto/post/PostResponseDto.java
-package com.newsgroup.newsfeed.dto.responseDto.post;
-========
 package com.newsgroup.newsfeed.dto.response.post;
->>>>>>>> dev:src/main/java/com/newsgroup/newsfeed/dto/response/post/PostResponse.java
 
 import lombok.Getter;
 

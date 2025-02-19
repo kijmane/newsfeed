@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/newsgroup/newsfeed/dto/responseDto/user/UserResponseDto.java
-package com.newsgroup.newsfeed.dto.responseDto.user;
-========
 package com.newsgroup.newsfeed.dto.response.user;
->>>>>>>> dev:src/main/java/com/newsgroup/newsfeed/dto/response/user/UserResponse.java
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;

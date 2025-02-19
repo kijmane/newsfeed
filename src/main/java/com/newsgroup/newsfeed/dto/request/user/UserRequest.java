@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/newsgroup/newsfeed/dto/requestDto/user/UserRequest.java
-package com.newsgroup.newsfeed.dto.requestDto.user;
-========
 package com.newsgroup.newsfeed.dto.request.user;
->>>>>>>> dev:src/main/java/com/newsgroup/newsfeed/dto/request/user/UserRequest.java
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
