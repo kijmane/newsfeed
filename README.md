@@ -13,7 +13,7 @@
 - Build Tool : Gradle
 
 ## ERD 설계
-<img width="739" alt="스크린샷 2025-02-18 오후 1 26 30" src="https://github.com/user-attachments/assets/a833214b-45eb-45ea-942e-800d8679cae3" />
+<img width="552" alt="스크린샷 2025-02-19 오후 8 26 12" src="https://github.com/user-attachments/assets/912e16c0-8bbd-49fb-b079-63636cbad87f" />
 
 ## 주요 기능
 ### 회원 기능
