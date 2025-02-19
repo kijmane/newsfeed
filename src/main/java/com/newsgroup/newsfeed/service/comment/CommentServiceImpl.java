@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.service.comment;
 
-import com.newsgroup.newsfeed.dto.requestDto.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.responseDto.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.request.comment.CommentRequest;
+import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
@@ -35,10 +35,11 @@ public class CommentServiceImpl implements CommentService {
     // 댓글 수정
     @Override
     @Transactional
-    public void updateComment(Users user, Long commentId, CommentRequest request) {
+    public CommentResponse updateComment(Users user, Long commentId, CommentRequest request) {
         Comment comment = getCommentById(commentId);
         checkCommentPermission(comment, user);
         comment.updateContent(request.getContent());
+        return new CommentResponse(comment, user); // 업데이트된 댓글을 반환하도록 수정
     }
 
     // 댓글 삭제

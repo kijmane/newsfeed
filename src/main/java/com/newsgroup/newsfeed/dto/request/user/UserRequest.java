@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.requestDto.user;
+package com.newsgroup.newsfeed.dto.request.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

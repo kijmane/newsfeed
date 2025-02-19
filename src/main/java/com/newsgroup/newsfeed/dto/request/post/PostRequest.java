@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.requestDto.post;
+package com.newsgroup.newsfeed.dto.request.post;
 
 import lombok.Getter;
 

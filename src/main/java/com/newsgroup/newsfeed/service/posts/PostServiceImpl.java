@@ -1,8 +1,8 @@
 package com.newsgroup.newsfeed.service.posts;
 
 
-import com.newsgroup.newsfeed.dto.requestDto.post.PostRequest;
-import com.newsgroup.newsfeed.dto.responseDto.post.PostResponse;
+import com.newsgroup.newsfeed.dto.request.post.PostRequest;
+import com.newsgroup.newsfeed.dto.response.post.PostResponse;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;

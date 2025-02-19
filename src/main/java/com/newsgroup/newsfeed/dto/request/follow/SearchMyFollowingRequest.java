@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.requestDto.follow;
+package com.newsgroup.newsfeed.dto.request.follow;
 
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.FollowEnum;
