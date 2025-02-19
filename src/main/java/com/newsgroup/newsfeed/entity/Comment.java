@@ -25,13 +25,6 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @Builder
-    public Comment(Users user, Posts post, String content) {
-        this.user = user;
-        this.post = post;
-        this.content = content;
-    }
-
     public void updateContent(String content) {
         this.content = content.trim();
     }

@@ -18,14 +18,18 @@ public class CommentController {
     private final CommentService commentService;
 
     /**
-     * 특정 게시물의 댓글 목록 조회
+     * 특정 게시물의 댓글 목록 조회 (하나의 게시물에 목록 / 페이징 추가!! / 작성순으로 보여줄건지 시간순으로 보여줄건지)
      */
     @GetMapping("/{postId}")
     public ResponseEntity<List<CommentResponse>> getComments(
             @RequestHeader Users user,
-            @PathVariable Long postId
+            @PathVariable Long postId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "15") int size,
+            @RequestParam(defaultValue = "createdDate") String sortBy,
+            @RequestParam(defaultValue = "desc") String direction
     ) {
-        List<CommentResponse> comments = commentService.getComments(postId, user);
+        List<CommentResponse> comments = commentService.getComments(postId, user, page, size, sortBy, direction);
         return ResponseEntity.ok(comments);
     }
 

@@ -10,6 +10,10 @@ import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.CommentRepository;
 import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,10 +28,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> getComments(Long postId, Users currentUser) {
-        Posts post = getPostById(postId);
-        return commentRepository.findByPost(post)
-                .stream()
+    public List<CommentResponse> getComments(Long postId, Users currentUser, int page, int size, String sortBy, String direction) {
+        Sort sort = direction.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<Comment> commentPage = commentRepository.findByPostId (postId, pageable);
+        return commentPage.stream()
                 .map(comment -> new CommentResponse(comment, currentUser))
                 .collect(Collectors.toList());
     }
@@ -58,7 +63,7 @@ public class CommentServiceImpl implements CommentService {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
-
+    // 보완!
     private void checkCommentPermission(Comment comment, Users user) {
         if (!comment.isOwnerOrPostOwner(user)) {
             throw new CustomException(ErrorCode.NO_PERMISSION);
