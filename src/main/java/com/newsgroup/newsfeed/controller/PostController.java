@@ -4,7 +4,6 @@ import com.newsgroup.newsfeed.dto.requestDtos.post.PostRequestDto;
 import com.newsgroup.newsfeed.dto.responseDtos.post.PostResponseDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
-import com.newsgroup.newsfeed.service.posts.PostServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

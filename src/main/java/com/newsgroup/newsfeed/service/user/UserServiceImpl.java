@@ -2,7 +2,7 @@ package com.newsgroup.newsfeed.service.user;
 
 import com.newsgroup.newsfeed.config.BCryptPasswordEncoder;
 import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
-import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
+import com.newsgroup.newsfeed.dto.responseDtos.user.UserResponseDto;
 import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserProfileById(Long id) {
+    public UserResponseDto getUserProfileById(java.lang.Long id) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return new UserResponseDto(user);

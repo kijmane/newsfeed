@@ -1,11 +1,11 @@
-package com.newsgroup.newsfeed.dto.responseDto.user;
+package com.newsgroup.newsfeed.dto.responseDtos.user;
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;
 
 @Getter
 public class UserResponseDto {
-    private Long id;
+    private java.lang.Long id;
     private String email;
     private String nickname;
 
