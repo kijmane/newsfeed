@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @CreatedDate
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate; // 생성일
 
     @LastModifiedDate
-    private  LocalDateTime updateDate;
+    private  LocalDateTime updateDate; // 수정일
 }
