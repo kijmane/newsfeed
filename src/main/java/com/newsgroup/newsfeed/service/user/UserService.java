@@ -1,8 +1,8 @@
 package com.newsgroup.newsfeed.service.user;
 
-import com.newsgroup.newsfeed.dto.requestDto.user.UserRequest;
-import com.newsgroup.newsfeed.dto.responseDto.user.UserResponse;
-import com.newsgroup.newsfeed.dto.requestDto.user.UserProfileRequest;
+import com.newsgroup.newsfeed.dto.request.user.UserRequest;
+import com.newsgroup.newsfeed.dto.response.user.UserResponse;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
 
 public interface UserService {
     UserResponse registerUser(UserRequest userRequestDto);
