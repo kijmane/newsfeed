@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserProfileById(Long id) {
+    public UserResponseDto getUserProfileById(java.lang.Long id) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID의 사용자가 없습니다."));
         return new UserResponseDto(user);

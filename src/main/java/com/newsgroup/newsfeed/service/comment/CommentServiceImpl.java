@@ -23,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> getComments(Long postId, Users currentUser) {
+    public List<CommentResponse> getComments(java.lang.Long postId, Users currentUser) {
         Posts post = getPostById(postId);
         return commentRepository.findByPost(post)
                 .stream()
@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public void updateComment(Users user, Long commentId, CommentRequest request) {
+    public void updateComment(Users user, java.lang.Long commentId, CommentRequest request) {
         Comment comment = getCommentById(commentId);
         checkCommentPermission(comment, user);
         comment.updateContent(request.getContent());
@@ -41,18 +41,18 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public void deleteComment(Users user, Long commentId) {
+    public void deleteComment(Users user, java.lang.Long commentId) {
         Comment comment = getCommentById(commentId);
         checkCommentPermission(comment, user);
         commentRepository.delete(comment);
     }
 
-    private Posts getPostById(Long postId) {
+    private Posts getPostById(java.lang.Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
-    private Comment getCommentById(Long commentId) {
+    private Comment getCommentById(java.lang.Long commentId) {
         return commentRepository.findById(commentId)
                 .orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
     }

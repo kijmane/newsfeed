@@ -2,10 +2,7 @@ package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -24,7 +21,11 @@ public class Users extends BaseEntity {
     @Column(nullable = false)
     private String nickname;
     private String password;
+
+    @Setter
     private Long followNum = 0L;
+
+    @Setter
     private Long followingNum = 0L;
 
     public Users(String email, String nickname, String password) {
@@ -41,7 +42,15 @@ public class Users extends BaseEntity {
         this.followNum++;
     }
 
-    public void followed() {
+    public void setUserFollowing() {
         this.followingNum++;
+    }
+
+    public void setUserUnFollow() {
+        this.followNum--;
+    }
+
+    public void setUserUnFollowing() {
+        this.followingNum--;
     }
 }

@@ -1,6 +1,8 @@
 package com.newsgroup.newsfeed.service.follow;
 
 import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
+import com.newsgroup.newsfeed.dto.respondDtos.follow.SearchFollowerRespDto;
+import com.newsgroup.newsfeed.dto.respondDtos.follow.UnFollowRespDto;
 import com.newsgroup.newsfeed.entity.Follow;
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
 import com.newsgroup.newsfeed.entity.Users;
@@ -11,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,6 +26,8 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public FollowRespDto follow(FollowReqDto dto) {
         Follow follow = new Follow(dto);
+        follow.getFollowed().setUserFollow();
+        follow.getFollower().setUserFollowing();
         followRepo.save(follow);
 
         return new FollowRespDto(follow);
@@ -34,33 +37,41 @@ public class FollowServiceImpl implements FollowService {
      * 검색 로직
      */
     @Override
-    public List<Users> searchFollowList(Users targetUser, FollowEnum followEnum) {
+    public List<SearchFollowerRespDto> searchFollowList(Users targetUser, FollowEnum followEnum) {
+        // Users -> SearchFollowerRespDto 변환
         return findAll().stream()
                 .map(follow -> followEnum.equals(FollowEnum.followers)
                         ? follow.getFollower()
                         : follow.getFollowed()
-                ).filter(users -> targetUser.getId().equals(users.getId()))
-                .collect(Collectors.toList());
+                )
+                .filter(users -> targetUser.getId().equals(users.getId()))
+                .map(SearchFollowerRespDto::new) // Users -> SearchFollowerRespDto 변환
+                .toList();
     }
 
     /**
      * 언팔로우(삭제) 로직
      */
     @Override
-    public String unFollow(Users target, Users unfollowUser) {
-        Follow targetFollower = findFollow(target, unfollowUser);
-        deleteById(targetFollower.getId());
-        return target.getNickname() + "님이 " + unfollowUser.getNickname() + " 님을 언팔로우 하였습니다.";
+    public UnFollowRespDto unFollow(Users target, Users unfollowUser) {
+        Follow targetFollow = findFollow(target, unfollowUser);
+        targetFollow.getFollower().setUserUnFollowing();
+        targetFollow.getFollowed().setUserUnFollow();
+
+        UnFollowRespDto unFollowRespDto = new UnFollowRespDto(targetFollow);
+        deleteById(targetFollow.getId());
+
+        return unFollowRespDto;
     }
 
 
-    @Override
-    public Follow findByNickname(String follower, String followed) {
-        return findAll().stream()
-                .filter(follow -> follow.getFollower().getNickname().equals(follower)
-                        && follow.getFollowed().getNickname().equals(followed))
-                .findFirst().orElse(null);
-    }
+//    @Override
+//    public Follow findByNickname(String follower, String followed) {
+//        return findAll().stream()
+//                .filter(follow -> follow.getFollower().getNickname().equals(follower)
+//                        && follow.getFollowed().getNickname().equals(followed))
+//                .findFirst().orElse(null);
+//    }
 
     private Follow findFollow(Users follower, Users followed) {
         return findAll().stream()
@@ -69,7 +80,7 @@ public class FollowServiceImpl implements FollowService {
                 .findFirst().orElse(null);
     }
 
-    private void deleteById(Long id) {
+    private void deleteById(java.lang.Long id) {
         followRepo.deleteById(id);
     }
 
