@@ -3,6 +3,7 @@ package com.newsgroup.newsfeed.controller;
 import com.newsgroup.newsfeed.config.GetLoginUser;
 import com.newsgroup.newsfeed.dto.request.post.PostRequest;
 import com.newsgroup.newsfeed.dto.response.post.PostResponse;
+import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
 import jakarta.servlet.http.HttpSession;
@@ -29,8 +30,19 @@ public class PostController {
             @RequestBody PostRequest request
     ) {
         Users user = getLoginUser(session);
+        String email = user.getEmail();
+
+        Posts post = Posts.builder()
+                .email(email)  // 세션에서 받은 email을 Posts 엔티티에 설정
+                .content(request.getContent())  // 클라이언트에서 전달된 content
+                .thumbsUpCount(0L)  // 기본값 설정
+                .user(user)  // 로그인한 사용자 정보
+                .build();
+
+
         PostResponse response = postService.createPost(user, request);
         return ResponseEntity.ok(response);
+
     }
 
     /**
@@ -75,8 +87,8 @@ public class PostController {
      * 좋아요 수 증가
      */
     @PostMapping("/posts/{id}/thumbs-up")
-    public ResponseEntity<Void> increaseThumbsUp(@PathVariable Long postId) {
-        postService.increaseThumbsUp(postId);
+    public ResponseEntity<Void> increaseThumbsUp(@PathVariable("id") Long id) {
+        postService.increaseThumbsUp(id);
         return ResponseEntity.ok().build();
     }
 }
