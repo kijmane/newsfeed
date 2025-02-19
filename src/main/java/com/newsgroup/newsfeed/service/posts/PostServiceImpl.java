@@ -3,7 +3,6 @@ package com.newsgroup.newsfeed.service.posts;
 
 import com.newsgroup.newsfeed.dto.request.post.PostRequest;
 import com.newsgroup.newsfeed.dto.response.post.PostResponse;
-import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -18,7 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.newsgroup.newsfeed.exception.ErrorCode.POST_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +39,7 @@ public class PostServiceImpl implements PostService {
 
         Posts post = Posts.builder()
                 .user(user)
+                .email(user.getEmail())
                 .content(request.getContent())
                 .thumbsUpCount(0L)
                 .build();
@@ -76,7 +79,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponse update(Long id, String email, PostRequest dto) {
         Posts post = postRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(POST_NOT_FOUND));
 
         // 작성자 검증
         if (!post.getEmail().equals(email)) {
@@ -94,11 +97,21 @@ public class PostServiceImpl implements PostService {
                 post.getCommentsCount());
     }
 
+    @Override
+    public Posts findById(Long id) {
+        Optional<Posts> byId = postRepository.findById(id);
+        if (byId.isEmpty()) {
+            throw new CustomException(POST_NOT_FOUND);
+        } else {
+            return byId.get();
+        }
+    }
+
     @Transactional
     @Override
     public void deleteById(Long id, String email) {
         Posts post = postRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 수정할 게시글이 없을 경우
+                .orElseThrow(() -> new CustomException(POST_NOT_FOUND)); // 수정할 게시글이 없을 경우
         // 게시글 작성자와 수정자의 이메일 일치확인
         if (!post.getEmail().equals(email)) {
             throw new CustomException(ErrorCode.UNAUTHORIZED_POST_DELETE); // 삭제 권한이 없을 경우
@@ -112,7 +125,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void increaseThumbsUp(Long postId) {
         Posts posts = postRepository.findById(postId)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 삭제할 게시글이 없을 경우
+                .orElseThrow(() -> new CustomException(POST_NOT_FOUND)); // 삭제할 게시글이 없을 경우
         posts.increaseThumbsUp();
     }
 
