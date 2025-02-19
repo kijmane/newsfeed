@@ -51,4 +51,12 @@ public class Users extends BaseEntity {
     public void increaseFollowingCount() {
         this.followingNum++;
     }
+
+    public void decreaseFollowCount() {
+        this.followNum--;
+    }
+
+    public void decreaseFollowingCount() {
+        this.followingNum--;
+    }
 }

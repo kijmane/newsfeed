@@ -4,10 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+    <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="dev브랜치 충돌 해결2">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/NewsfeedApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/config/BaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/config/JpaAuditingConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/dto/requestDtos/post/PostRequestDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/dto/responseDtos/post/PostResponseDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Posts$PostsBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Posts.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Users.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/exception/CustomException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/exception/ErrorCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/repository/PostRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/service/posts/PostService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PostController.class.uniqueId0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/requestDtos/post/PostRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/post/PostResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/CustomException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/repository/PostRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/NewsfeedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/NewsfeedApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/config/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/config/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/FollowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/FollowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/FollowRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/FollowRespDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/SearchFollowerRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/SearchFollowerRespDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/UnFollowRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/UnFollowRespDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDto/user/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/user/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/comment/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/comment/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,12 +59,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Newsfeed" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Newsfeed" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Newsfeed" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -59,36 +110,38 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2tC3qXyFc1d1c4s4ZpnBLVtM3sP" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build Newsfeed2.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.NewsfeedApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/jonghun&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/IdeaProjects/Newsfeed2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build Newsfeed2.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.NewsfeedApplication.executor": "Run",
+    "git-widget-placeholder": "Merging feat/sejin",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/IdeaProjects/Newsfeed2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="NewsfeedApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -126,6 +179,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=".." />
-    <option name="LAST_COMMIT_MESSAGE" value=".." />
+    <MESSAGE value="dev브랜치 충돌 해결2" />
+    <option name="LAST_COMMIT_MESSAGE" value="dev브랜치 충돌 해결2" />
   </component>
 </project>
