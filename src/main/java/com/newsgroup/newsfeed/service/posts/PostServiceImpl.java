@@ -29,9 +29,10 @@ public class PostServiceImpl implements PostService {
     @Transactional
     @Override
     public PostResponse createPost(Users user, PostRequest request) {
+//        Users user = session.getAttribute("세션명");
         if (user == null) {
             throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
-        }
+        } // 로그인한 유저가 맞나?
 
         Posts post = Posts.builder()
                 .user(user)
