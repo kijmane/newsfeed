@@ -1,9 +1,7 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
 import com.newsgroup.newsfeed.service.follow.FollowService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
