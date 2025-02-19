@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.responseDtos.comment;
+package com.newsgroup.newsfeed.dto.responseDto.comment;
 
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Users;

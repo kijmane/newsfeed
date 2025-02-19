@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowedReqDto;
+import com.newsgroup.newsfeed.dto.requestDto.follow.FollowRequest;
+import com.newsgroup.newsfeed.dto.requestDto.follow.FollowedRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,12 +32,12 @@ public class Follow {
 
     private LocalDateTime unfollowDate; //언팔로우 날짜 기록용 필드
 
-    public Follow(FollowReqDto dto) {
+    public Follow(FollowRequest dto) {
         this.followed = dto.getFollowed();
         this.follower = dto.getFollower();
     }
 
-    public Follow(FollowedReqDto dto) {
+    public Follow(FollowedRequest dto) {
         this.followed = dto.getFollowed();
         this.follower = dto.getFollower();
     }
