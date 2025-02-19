@@ -2,6 +2,7 @@ package com.newsgroup.newsfeed.service.comment;
 
 import com.newsgroup.newsfeed.dto.request.comment.CommentRequest;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.response.comment.CommentSaveRespDto;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -24,6 +25,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
+
+    @Override
+    @Transactional
+    public CommentSaveRespDto saveComment(Comment comment) {
+        /* findByPostId 로직  */
+        commentRepository.save(comment);
+        CommentSaveRespDto respDto = new CommentSaveRespDto(comment);
+        return respDto;
+    }
 
     /*
         특정 게시물 댓글 목록 페이징 처리하여 조회

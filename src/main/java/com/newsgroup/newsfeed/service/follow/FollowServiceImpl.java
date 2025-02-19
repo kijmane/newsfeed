@@ -27,8 +27,8 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public FollowResponse follow(FollowRequest dto) {
         Follow follow = new Follow(dto);
-        follow.getFollowed().increaseFollowCount();
-        follow.getFollower().increaseFollowingCount();
+        Long l = follow.getFollowed().increaseFollowCount();
+        Long l1 = follow.getFollower().increaseFollowingCount();
         followRepo.save(follow);
 
         return new FollowResponse(follow);
