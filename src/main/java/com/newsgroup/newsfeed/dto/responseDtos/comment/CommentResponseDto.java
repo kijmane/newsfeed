@@ -5,13 +5,13 @@ import com.newsgroup.newsfeed.entity.Users;
 import lombok.Getter;
 
 @Getter
-public class CommentResponse {
+public class CommentResponseDto {
     private final Long id;
     private final String nickname;
     private final String content;
     private final boolean canModifyOrDelete;
 
-    public CommentResponse(Comment comment, Users currentUser) {
+    public CommentResponseDto(Comment comment, Users currentUser) {
         this.id = comment.getId();
         this.nickname = comment.getUser().getNickname();
         this.content = comment.getContent();

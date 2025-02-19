@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.service.comment;
 
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequestDto;
+import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponseDto;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
@@ -24,18 +24,18 @@ public class CommentServiceImpl implements CommentService {
     // 특정 게시물의 댓글 목록 조회
     @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> getComments(Long postId, Users currentUser) {
+    public List<CommentResponseDto> getComments(Long postId, Users currentUser) {
         Posts post = getPostById(postId);
         return commentRepository.findByPost(post) // postId 대신 post 엔티티로 조회
                 .stream()
-                .map(comment -> new CommentResponse(comment, currentUser))
+                .map(comment -> new CommentResponseDto(comment, currentUser))
                 .collect(Collectors.toList());
     }
 
     // 댓글 수정
     @Override
     @Transactional
-    public void updateComment(Users user, Long commentId, CommentRequest request) {
+    public void updateComment(Users user, Long commentId, CommentRequestDto request) {
         Comment comment = getCommentById(commentId);
         checkCommentPermission(comment, user);
         comment.updateContent(request.getContent());

@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequestDto;
+import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponseDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/{postId}")
-    public ResponseEntity<List<CommentResponse>> getComments(
+    public ResponseEntity<List<CommentResponseDto>> getComments(
             @AuthenticationPrincipal Users user,
             @PathVariable java.lang.Long postId
     ) {
@@ -30,7 +30,7 @@ public class CommentController {
     public ResponseEntity<Void> updateComment(
             @AuthenticationPrincipal Users user,
             @PathVariable java.lang.Long commentId,
-            @RequestBody CommentRequest request
+            @RequestBody CommentRequestDto request
     ) {
         commentService.updateComment(user, commentId, request);
         return ResponseEntity.ok().build();
