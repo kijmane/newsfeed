@@ -16,7 +16,7 @@ import java.util.List;
 import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/comments/{postId}")
 @RequiredArgsConstructor
 public class CommentController {
 
@@ -25,7 +25,7 @@ public class CommentController {
     /**
      * 특정 게시물의 댓글 목록 조회
      */
-    @GetMapping("/{postId}")
+    @GetMapping("/comments/{commentId}")
     public ResponseEntity<List<CommentResponse>> getComments(
             HttpSession session,
             @PathVariable Long postId,
@@ -42,7 +42,7 @@ public class CommentController {
     /**
      * 댓글 수정 (작성자만 가능)
      */
-    @PutMapping("/{commentId}")
+    @PutMapping("/comment/{commentId}")
     public ResponseEntity<CommentResponse> updateComment(
             HttpSession session,
             @PathVariable Long commentId,
@@ -55,7 +55,7 @@ public class CommentController {
     /**
      * 댓글 삭제 (작성자만 가능)
      */
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/comment/{commentId}")
     public ResponseEntity<Void> deleteComment(
             HttpSession session,
             @PathVariable Long commentId
