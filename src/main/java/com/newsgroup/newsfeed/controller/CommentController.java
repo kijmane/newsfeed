@@ -22,13 +22,14 @@ public class CommentController {
      */
     @GetMapping("/{postId}")
     public ResponseEntity<List<CommentResponse>> getComments(
-            @RequestHeader Users user,
+            @RequestHeader Users user, // 세션 통해 사용자 정보 가져올 예정
             @PathVariable Long postId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "15") int size,
             @RequestParam(defaultValue = "createdDate") String sortBy,
             @RequestParam(defaultValue = "desc") String direction
     ) {
+        // 세션 인증 구현 후 추가 될 예정
         List<CommentResponse> comments = commentService.getComments(postId, user, page, size, sortBy, direction);
         return ResponseEntity.ok(comments);
     }
