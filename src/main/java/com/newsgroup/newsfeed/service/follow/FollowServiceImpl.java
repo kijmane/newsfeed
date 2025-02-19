@@ -1,5 +1,6 @@
 package com.newsgroup.newsfeed.service.follow;
 
+import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
 import com.newsgroup.newsfeed.entity.Follow;
 import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
 import com.newsgroup.newsfeed.entity.Users;
@@ -22,14 +23,11 @@ public class FollowServiceImpl implements FollowService {
      * 팔로우 로직
      */
     @Override
-    public String follow(FollowReqDto dto) {
+    public FollowRespDto follow(FollowReqDto dto) {
         Follow follow = new Follow(dto);
         followRepo.save(follow);
 
-        String follower = dto.getFollower().getNickname();
-        String followed = dto.getFollowed().getNickname();
-        return follower + " 님이 " + followed + " 님을 팔로우 하였습니다.";
-
+        return new FollowRespDto(follow);
     }
 
     /**

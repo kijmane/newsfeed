@@ -1,8 +1,6 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
-import com.newsgroup.newsfeed.dto.respondDtos.FollowRespDto;
-import com.newsgroup.newsfeed.entity.Users;
+import com.newsgroup.newsfeed.dto.respondDtos.follow.FollowRespDto;
 import com.newsgroup.newsfeed.service.follow.FollowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +16,15 @@ public class FollowController {
 
     private final FollowService service;
 
-//    @PostMapping("/{nickname}/follow")
-//    public ResponseEntity<FollowRespDto> followUser(@PathVariable String nickname) {
+//    @PostMapping("/{id}/follow")
+//    public ResponseEntity<FollowRespDto> followUser(@PathVariable String id) {
+//       //user서비스 findById필요
+//
 //
 //    }
 
-//    @PostMapping("/users/{username}/followings")
-//    public void findFollow(@PathVariable String username) {
-//        service.findByNickname()
-//    }
+    @PostMapping("/users/{id}/followings")
+    public void findFollow(@PathVariable String id) {
+
+    }
 }

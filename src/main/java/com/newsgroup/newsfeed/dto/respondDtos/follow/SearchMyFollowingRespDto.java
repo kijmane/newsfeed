@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.respondDtos;
+package com.newsgroup.newsfeed.dto.respondDtos.follow;
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Data;
