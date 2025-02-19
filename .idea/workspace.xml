@@ -4,48 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="dev브랜치 충돌 해결2">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/NewsfeedApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/config/BaseEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/config/JpaAuditingConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/dto/requestDtos/post/PostRequestDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/dto/responseDtos/post/PostResponseDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Posts$PostsBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Posts.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/entity/Users.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/exception/CustomException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/exception/ErrorCode.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/repository/PostRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/newsgroup/newsfeed/service/posts/PostService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PostController.class.uniqueId0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/requestDtos/post/PostRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/post/PostResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/CustomException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/repository/PostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/NewsfeedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/NewsfeedApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/config/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/config/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/FollowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/FollowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/FollowRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/FollowRespDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/SearchFollowerRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/SearchFollowerRespDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/respondDtos/follow/UnFollowRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/follow/UnFollowRespDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDto/user/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/user/UserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/comment/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/comment/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/follow/FollowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="dev브랜치 충돌 해결2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,17 +28,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Newsfeed" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Newsfeed" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Newsfeed" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -101,7 +49,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="feat/jonghun" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -126,7 +74,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.NewsfeedApplication.executor": "Run",
-    "git-widget-placeholder": "Merging feat/sejin",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/user/IdeaProjects/Newsfeed2",
     "node.js.detected.package.eslint": "true",
