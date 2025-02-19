@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.requestDtos.follow;
+package com.newsgroup.newsfeed.dto.requestDto.follow;
 
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.FollowEnum;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SearchMyFollowingReqDto {
+public class SearchMyFollowingRequest {
     @NotNull
     private Users targetUser;
 

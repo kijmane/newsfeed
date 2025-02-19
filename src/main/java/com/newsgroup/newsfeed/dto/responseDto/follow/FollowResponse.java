@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.responseDtos.follow;
+package com.newsgroup.newsfeed.dto.responseDto.follow;
 
 import com.newsgroup.newsfeed.entity.Follow;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class FollowRespDto {
+public class FollowResponse {
     private Long id;
 
     private Long followerId;
@@ -19,7 +19,7 @@ public class FollowRespDto {
 
     private LocalDateTime unfollowDate;
 
-    public FollowRespDto(Follow follow) {
+    public FollowResponse(Follow follow) {
         this.id = follow.getId();
         this.followedId = follow.getFollowed().getId();
         this.followerId = follow.getFollower().getId();

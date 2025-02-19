@@ -1,10 +1,10 @@
 package com.newsgroup.newsfeed.service.follow;
 
-import com.newsgroup.newsfeed.dto.responseDtos.follow.FollowRespDto;
-import com.newsgroup.newsfeed.dto.responseDtos.follow.SearchFollowerRespDto;
-import com.newsgroup.newsfeed.dto.responseDtos.follow.UnFollowRespDto;
+import com.newsgroup.newsfeed.dto.responseDto.follow.FollowResponse;
+import com.newsgroup.newsfeed.dto.responseDto.follow.SearchFollowerResponse;
+import com.newsgroup.newsfeed.dto.responseDto.follow.UnFollowResponse;
 import com.newsgroup.newsfeed.entity.Follow;
-import com.newsgroup.newsfeed.dto.requestDtos.follow.FollowReqDto;
+import com.newsgroup.newsfeed.dto.requestDto.follow.FollowRequest;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.enums.FollowEnum;
 import com.newsgroup.newsfeed.repository.FollowRepository;
@@ -24,20 +24,20 @@ public class FollowServiceImpl implements FollowService {
      * 팔로우 로직
      */
     @Override
-    public FollowRespDto follow(FollowReqDto dto) {
+    public FollowResponse follow(FollowRequest dto) {
         Follow follow = new Follow(dto);
         follow.getFollowed().increaseFollowCount();
         follow.getFollower().increaseFollowingCount();
         followRepo.save(follow);
 
-        return new FollowRespDto(follow);
+        return new FollowResponse(follow);
     }
 
     /**
      * 검색 로직
      */
     @Override
-    public List<SearchFollowerRespDto> searchFollowList(Users targetUser, FollowEnum followEnum) {
+    public List<SearchFollowerResponse> searchFollowList(Users targetUser, FollowEnum followEnum) {
         // Users -> SearchFollowerRespDto 변환
         return findAll().stream()
                 .map(follow -> followEnum.equals(FollowEnum.followers)
@@ -45,7 +45,7 @@ public class FollowServiceImpl implements FollowService {
                         : follow.getFollowed()
                 )
                 .filter(users -> targetUser.getId().equals(users.getId()))
-                .map(SearchFollowerRespDto::new) // Users -> SearchFollowerRespDto 변환
+                .map(SearchFollowerResponse::new) // Users -> SearchFollowerRespDto 변환
                 .toList();
     }
 
@@ -53,12 +53,12 @@ public class FollowServiceImpl implements FollowService {
      * 언팔로우(삭제) 로직
      */
     @Override
-    public UnFollowRespDto unFollow(Users target, Users unfollowUser) {
+    public UnFollowResponse unFollow(Users target, Users unfollowUser) {
         Follow targetFollow = findFollow(target, unfollowUser);
         targetFollow.getFollower().decreaseFollowingCount();
         targetFollow.getFollowed().decreaseFollowCount();
 
-        UnFollowRespDto unFollowRespDto = new UnFollowRespDto(targetFollow);
+        UnFollowResponse unFollowRespDto = new UnFollowResponse(targetFollow);
         deleteById(targetFollow.getId());
 
         return unFollowRespDto;
