@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.requestDtos.post.PostRequestDto;
-import com.newsgroup.newsfeed.dto.responseDtos.post.PostResponseDto;
+import com.newsgroup.newsfeed.dto.request.post.PostRequest;
+import com.newsgroup.newsfeed.dto.response.post.PostResponse;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
@@ -19,30 +19,30 @@ public class PostController {
 
     // 게시글 추가 (인증된 사용자만 가능)
     @PostMapping("/posts")
-    public ResponseEntity<PostResponseDto> createPost(
+    public ResponseEntity<PostResponse> createPost(
             @AuthenticationPrincipal Users user,
-            @RequestBody PostRequestDto request
+            @RequestBody PostRequest request
     ) {
-        PostResponseDto response = postService.createPost(user, request);
+        PostResponse response = postService.createPost(user, request);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 전체조회 (15개 게시물 조회)
     @GetMapping ("/posts")
-    public ResponseEntity<List<PostResponseDto>> findAll(
+    public ResponseEntity<List<PostResponse>> findAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "15") int size
     ) {
-        List<PostResponseDto> result = postService.findAll(page, size);
+        List<PostResponse> result = postService.findAll(page, size);
         return ResponseEntity.ok(result);
     }
 
     // 게시글 수정 (작성자만 수정가능)
     @PutMapping ("/posts/{id}")
-    public ResponseEntity<PostResponseDto> update(
+    public ResponseEntity<PostResponse> update(
             @PathVariable Long id,
             @RequestBody String email,
-            @RequestBody PostRequestDto dto
+            @RequestBody PostRequest dto
             ) {
         return ResponseEntity.ok(postService.update(id, email, dto));
     }
