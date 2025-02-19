@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.responseDtos.follow;
+package com.newsgroup.newsfeed.dto.responseDto.follow;
 
 import com.newsgroup.newsfeed.entity.Follow;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class UnFollowRespDto {
+public class UnFollowResponse {
     private Long id;
 
     private Long followerId; // 팔로우 하는 사람
@@ -19,7 +19,7 @@ public class UnFollowRespDto {
 
     private LocalDateTime unfollowDate; //언팔로우 날짜 기록용 필드
 
-    public UnFollowRespDto(Follow follow) {
+    public UnFollowResponse(Follow follow) {
         this.createdDate = follow.getCreatedDate();
         this.followedId = follow.getFollowed().getId();
         this.followerId = follow.getFollower().getId();

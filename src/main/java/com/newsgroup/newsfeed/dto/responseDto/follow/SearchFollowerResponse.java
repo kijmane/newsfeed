@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto.responseDtos.follow;
+package com.newsgroup.newsfeed.dto.responseDto.follow;
 
 import com.newsgroup.newsfeed.entity.Users;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SearchFollowerRespDto {
+public class SearchFollowerResponse {
     private Long id;
     private String email;
     private String nickname;
@@ -14,7 +14,7 @@ public class SearchFollowerRespDto {
     private Long followNum = 0L;
     private Long followingNum = 0L;
 
-    public SearchFollowerRespDto(Users user) {
+    public SearchFollowerResponse(Users user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.followNum = user.getFollowNum();

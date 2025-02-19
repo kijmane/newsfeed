@@ -1,16 +1,16 @@
-package com.newsgroup.newsfeed.dto.requestDtos.user;
+package com.newsgroup.newsfeed.dto.requestDto.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserProfileRequestDto {
+public class UserProfileRequest {
     private String email;
     private String newNickname;
     private String password;
 
-    public UserProfileRequestDto(String email, String newNickname, String password) {
+    public UserProfileRequest(String email, String newNickname, String password) {
         this.email = email;
         this.newNickname = newNickname;
         this.password = password;
