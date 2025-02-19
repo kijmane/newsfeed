@@ -2,14 +2,11 @@ package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
@@ -24,25 +21,34 @@ public class Users extends BaseEntity {
 
     @Column(nullable = false)
     private String nickname;
-    private String password;
-    private Long followNum = 0L;
-    private Long followingNum = 0L;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private Long followNum;
+
+    @Column(nullable = false)
+    private Long followingNum;
+
+    @Builder
     public Users(String email, String nickname, String password) {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+        this.followNum = 0L;
+        this.followingNum = 0L;
     }
 
     public void updateNickname(String newNickname) {
         this.nickname = newNickname;
     }
 
-    public void setUserFollow() {
+    public void increaseFollowCount() {
         this.followNum++;
     }
 
-    public void followed() {
+    public void increaseFollowingCount() {
         this.followingNum++;
     }
 }

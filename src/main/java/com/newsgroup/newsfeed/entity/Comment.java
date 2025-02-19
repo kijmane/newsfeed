@@ -25,11 +25,13 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-   public void updateContent(String content) {
-       this.content = content;
-   }
+    // 댓글 내용 업데이트
+    public void updateContent(String content) {
+        this.content = content;
+    }
 
-   public boolean isOwnerOrPostOwner(Users user) {
-       return this.user.equals(user) || this.post != null && this.post.getUser() != null && this.post.getUser().equals(user);
-   }
+    // 댓글 소유자 혹은 게시물 소유자 확인
+    public boolean isOwnerOrPostOwner(Users user) {
+        return this.user.equals(user) || (this.post != null && this.post.getUser() != null && this.post.getUser().equals(user));
+    }
 }
