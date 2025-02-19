@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Posts extends BaseEntity {
     private Users user;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<PostComments> postCommentsList;
+    private List<Comment> CommentList;
 
     public Posts(String email,
                  String content,
@@ -54,7 +55,7 @@ public class Posts extends BaseEntity {
 
     // 댓글 수를 반환하는 메서드
     public Long getCommentsCount() {
-        return (long) postCommentsList.size();
+        return (long) CommentList.size();
     }
 
 }
