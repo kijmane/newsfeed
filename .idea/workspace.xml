@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDto/user/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/dto/responseDtos/user/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/user/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +119,7 @@
       <updated>1739842420307</updated>
       <workItem from="1739842421444" duration="24054000" />
       <workItem from="1739924924676" duration="3268000" />
-      <workItem from="1739930812494" duration="2555000" />
+      <workItem from="1739930812494" duration="3973000" />
     </task>
     <servers />
   </component>
