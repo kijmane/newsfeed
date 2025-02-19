@@ -14,7 +14,7 @@ import java.util.List;
 public class Posts extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private java.lang.Long id;
 
     private String email;
 
@@ -22,10 +22,10 @@ public class Posts extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
-    private Long thumbsUpNum = 0L;
+    private java.lang.Long thumbsUpNum = 0L;
 
     @Column(nullable = false)
-    private Long commentsNum = 0L;
+    private java.lang.Long commentsNum = 0L;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", nullable = false)
