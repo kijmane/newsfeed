@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class PostResponse {
+public class PostResponseDto {
 
     private Long id;
     private String email;
@@ -15,13 +15,13 @@ public class PostResponse {
     private LocalDateTime updateDate;
     private Long commentsCount;
 
-    public PostResponse(Long id,
-                        String email,
-                        String content,
-                        Long thumbsUpCount,
-                        LocalDateTime createdDate,
-                        LocalDateTime updateDate,
-                        Long commentsCount
+    public PostResponseDto(Long id,
+                           String email,
+                           String content,
+                           Long thumbsUpCount,
+                           LocalDateTime createdDate,
+                           LocalDateTime updateDate,
+                           Long commentsCount
     ) {
         this.id = id;
         this.email = email;
