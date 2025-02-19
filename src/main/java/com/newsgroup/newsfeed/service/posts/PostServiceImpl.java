@@ -75,11 +75,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponseDto update(Long id, String email, PostRequestDto dto) {
         Posts post = postRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 게시글이 없을경우
 
         // 작성자 검증
         if (!post.getEmail().equals(email)) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE);
+            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE); // 수정 권한이 없을경우
         }
 
         post.update(dto.getContent());
