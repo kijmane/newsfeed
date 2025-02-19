@@ -1,9 +1,10 @@
-package com.newsgroup.newsfeed.controller.posts;
+package com.newsgroup.newsfeed.controller;
 
 import com.newsgroup.newsfeed.dto.requestDtos.post.PostRequestDto;
 import com.newsgroup.newsfeed.dto.responseDtos.post.PostResponseDto;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
+import com.newsgroup.newsfeed.service.posts.PostServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,7 +18,7 @@ public class PostController {
 
     private final PostService postService;
 
-    // 게시물 추가 (인증된 사용자만 가능)
+    // 게시글 추가 (인증된 사용자만 가능)
     @PostMapping("/posts")
     public ResponseEntity<PostResponseDto> createPost(
             @AuthenticationPrincipal Users user,
@@ -27,6 +28,7 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
+    // 게시글 전체조회 (15개 게시물 조회)
     @GetMapping ("/posts")
     public ResponseEntity<List<PostResponseDto>> findAll(
             @RequestParam(defaultValue = "0") int page,
@@ -36,6 +38,7 @@ public class PostController {
         return ResponseEntity.ok(result);
     }
 
+    // 게시글 수정 (작성자만 수정가능)
     @PutMapping ("/posts/{id}")
     public ResponseEntity<PostResponseDto> update(
             @PathVariable Long id,
@@ -44,6 +47,8 @@ public class PostController {
             ) {
         return ResponseEntity.ok(postService.update(id, email, dto));
     }
+
+    //게시글 삭제 (작성자만 수정가능)
     @DeleteMapping("/posts/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id,
                        @RequestParam String email) {
