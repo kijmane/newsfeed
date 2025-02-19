@@ -17,11 +17,15 @@ public class CommentResponse {
     private String nickname;
     private String content;
     private boolean canModifyOrDelete;
-    // 생성자 자체를 외부에 공개하지않으려함!
-    public CommentResponse(Comment comment, Users currentUser) {
+
+    private CommentResponse(Comment comment, Users currentUser) {
         this.id = comment.getId();
         this.nickname = comment.getUser().getNickname();
         this.content = comment.getContent();
         this.canModifyOrDelete = Objects.equals(comment.getUser(), currentUser);
+    }
+
+    public static CommentResponse from(Comment comment, Users currentUser) {
+        return new CommentResponse(comment, currentUser);
     }
 }

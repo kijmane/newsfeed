@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService {
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Comment> commentPage = commentRepository.findByPostId (postId, pageable);
         return commentPage.stream()
-                .map(comment -> new CommentResponse(comment, currentUser))
+                .map(comment -> CommentResponse.from(comment, currentUser))
                 .collect(Collectors.toList());
     }
 
@@ -43,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = getCommentById(commentId);
         checkCommentPermission(comment, user);
         comment.updateContent(request.getContent());
-        return new CommentResponse(comment, user);
+        return CommentResponse.from(comment, user);
     }
 
     @Override
