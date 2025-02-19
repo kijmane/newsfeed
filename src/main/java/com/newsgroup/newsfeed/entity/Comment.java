@@ -37,7 +37,7 @@ public class Comment extends BaseEntity {
     }
 
     public boolean isOwnerOrPostOwner(Users user) {
-        return this.user.equals(user) ||
-                (this.post != null && this.post.getUser() != null && this.post.getUser().equals(user));
+        return Objects.equals(this.user, user) ||
+                (this.post != null && this.post.getUser() != null && Objects.equals(this.post.getUser(), user));
     }
 }
