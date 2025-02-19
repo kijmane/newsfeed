@@ -18,7 +18,7 @@ public class CommentController {
     private final CommentService commentService;
 
     /**
-     * 특정 게시물의 댓글 목록 조회 (하나의 게시물에 목록 / 페이징 추가!! / 작성순으로 보여줄건지 시간순으로 보여줄건지)
+     * 특정 게시물의 댓글 목록 조회 (세션 인증 구현 후 수정 예정)
      */
     @GetMapping("/{postId}")
     public ResponseEntity<List<CommentResponse>> getComments(
