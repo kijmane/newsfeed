@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comments;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -21,21 +22,28 @@ public class Posts extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
     private Long thumbsUpCount = 0L;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Comment> CommentList;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> commentList = new ArrayList<>();
+
 
     public Posts(String email,
                  String content,
                  Long thumbsUpCount,
-                 Users users
+                 Users user
     ) {
         this.email = email;
         this.content = content;
@@ -55,7 +63,7 @@ public class Posts extends BaseEntity {
 
     // 댓글 수를 반환하는 메서드
     public Long getCommentsCount() {
-        return (long) CommentList.size();
+        return commentList != null ? (long) commentList.size() : 0L; // commentList가 null이면 0을 반환
     }
 
 }

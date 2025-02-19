@@ -1,5 +1,6 @@
 package com.newsgroup.newsfeed.dto.response.post;
 
+import com.newsgroup.newsfeed.entity.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -15,14 +16,14 @@ public class PostResponse {
     private LocalDateTime updateDate;
     private Long commentsCount;
 
+
     public PostResponse(Long id,
                         String email,
                         String content,
                         Long thumbsUpCount,
                         LocalDateTime createdDate,
                         LocalDateTime updateDate,
-                        Long commentsCount
-    ) {
+                        Long commentsCount) {
         this.id = id;
         this.email = email;
         this.content = content;

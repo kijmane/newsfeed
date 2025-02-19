@@ -12,6 +12,6 @@ public interface PostService {
     PostResponse update(Long id, String email, PostRequest dto);
     void deleteById(Long id, String email);
     void increaseThumbsUp(Long postId);
-    void addComment(Long postId);
+//    void addComment(Long postId);
 }
 

@@ -3,6 +3,7 @@ package com.newsgroup.newsfeed.service.posts;
 
 import com.newsgroup.newsfeed.dto.request.post.PostRequest;
 import com.newsgroup.newsfeed.dto.response.post.PostResponse;
+import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -36,7 +37,6 @@ public class PostServiceImpl implements PostService {
 
         Posts post = Posts.builder()
                 .user(user)
-                .email(request.getEmail())
                 .content(request.getContent())
                 .thumbsUpCount(0L)
                 .build();
@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService {
         Posts savedPost = postRepository.save(post);
         return new PostResponse(
                 savedPost.getId(),
-                savedPost.getEmail(),
+                savedPost.getUser().getEmail(),
                 savedPost.getContent(),
                 savedPost.getThumbsUpCount(),
                 savedPost.getCreatedDate(),
@@ -84,14 +84,14 @@ public class PostServiceImpl implements PostService {
         }
 
         post.update(dto.getContent());
-        postRepository.save(post);
+
         return  new PostResponse(post.getId(),
-                dto.getEmail(),
-                dto.getContent(),
-                dto.getThumbsUpCount(),
-                dto.getCreatedDate(),
-                dto. getUpdateDate(),
-                dto.getCommentsCount());
+                post.getEmail(),
+                post.getContent(),
+                post.getThumbsUpCount(),
+                post.getCreatedDate(),
+                post. getUpdateDate(),
+                post.getCommentsCount());
     }
 
     @Transactional
@@ -114,15 +114,16 @@ public class PostServiceImpl implements PostService {
         Posts posts = postRepository.findById(postId)
                 .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 삭제할 게시글이 없을 경우
         posts.increaseThumbsUp();
-        postRepository.save(posts);
     }
 
     // 댓글 수 증가
-    @Transactional
-    @Override
-    public void addComment(Long postId) {
-        Posts posts = postRepository.findById(postId)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 좋아요 할 게시글이 없을 경우
-        postRepository.save(posts);
-    }
+//    @Transactional
+//    @Override
+//    public void addComment(Long postId, Comment comment) {
+//        Posts post = postRepository.findById(postId)
+//                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+//
+//        post.getCommentList().add(comment);
+//        comment.setPost(post);
+//    }
 }
