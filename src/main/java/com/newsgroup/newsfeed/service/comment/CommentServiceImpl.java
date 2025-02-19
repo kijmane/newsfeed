@@ -3,12 +3,10 @@ package com.newsgroup.newsfeed.service.comment;
 import com.newsgroup.newsfeed.dto.request.comment.CommentRequest;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Comment;
-import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.CommentRepository;
-import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +22,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
-    private final PostRepository postRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -59,12 +56,13 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
     }
 
-    private Posts getPostById(Long postId) {
-        return postRepository.findById(postId)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
-    }
-    // 보완!
     private void checkCommentPermission(Comment comment, Users user) {
+        if (comment == null) {
+            throw new CustomException(ErrorCode.COMMENT_NOT_FOUND);
+        }
+        if (user == null) {
+            throw new CustomException(ErrorCode.UNAUTHORIZED);
+        }
         if (!comment.isOwnerOrPostOwner(user)) {
             throw new CustomException(ErrorCode.NO_PERMISSION);
         }
