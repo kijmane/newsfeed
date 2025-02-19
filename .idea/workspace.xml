@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c14f0ec-e4dd-4e4a-be84-bd1544d95cfa" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/service/posts/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newsgroup/newsfeed/entity/Posts.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +117,7 @@
       <updated>1739842420307</updated>
       <workItem from="1739842421444" duration="24054000" />
       <workItem from="1739924924676" duration="3268000" />
-      <workItem from="1739930812494" duration="737000" />
+      <workItem from="1739930812494" duration="1836000" />
     </task>
     <servers />
   </component>
