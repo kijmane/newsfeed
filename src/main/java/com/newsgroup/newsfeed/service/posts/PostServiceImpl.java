@@ -37,6 +37,7 @@ public class PostServiceImpl implements PostService {
 
         Posts post = Posts.builder()
                 .user(user)
+                .email(user.getEmail())
                 .content(request.getContent())
                 .thumbsUpCount(0L)
                 .build();
@@ -57,7 +58,7 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true)
     @Override
     public List<PostResponse> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("modifiedAt").descending()); // 페이지네이션
+        Pageable pageable = PageRequest.of(page, size, Sort.by("updateDate").descending()); // 페이지네이션
         Page<Posts> posts = postRepository.findAll(pageable);
         return posts.getContent().stream()
                 .map(post -> new PostResponse(
