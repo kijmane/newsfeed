@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto;
+package com.newsgroup.newsfeed.dto.requestDtos.comment;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

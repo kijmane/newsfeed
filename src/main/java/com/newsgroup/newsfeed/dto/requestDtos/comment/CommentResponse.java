@@ -1,4 +1,4 @@
-package com.newsgroup.newsfeed.dto;
+package com.newsgroup.newsfeed.dto.requestDtos.comment;
 
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Users;
