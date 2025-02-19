@@ -74,13 +74,14 @@ public class PostServiceImpl implements PostService {
     @Transactional
     @Override
     public PostResponseDto update(Long id, String email, PostRequestDto dto) {
-        Posts post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("게시물이 존재하지 않습니다.")
-        );
+        Posts post = postRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+
         // 작성자 검증
         if (!post.getEmail().equals(email)) {
-            throw new IllegalArgumentException("작성자만 수정이 가능합니다.");
+            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE);
         }
+
         post.update(dto.getContent());
         postRepository.save(post);
         return  new PostResponseDto(post.getId(),
@@ -96,10 +97,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteById(Long id, String email) {
         Posts post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("삭제할 게시글이 존재하지 않습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 수정할 게시글이 없을 경우
         // 게시글 작성자와 수정자의 이메일 일치확인
         if (!post.getEmail().equals(email)) {
-            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
+            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_DELETE); // 삭제 권한이 없을 경우
         }
         postRepository.deleteById(id);
     }
@@ -110,7 +111,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void increaseThumbsUp(Long postId) {
         Posts posts = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("게시물이 존재하지 않습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 삭제할 게시글이 없을 경우
         posts.increaseThumbsUp();
         postRepository.save(posts);
     }
@@ -120,7 +121,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void addComment(Long postId) {
         Posts posts = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("게시물이 존재하지 않습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 좋아요 할 게시글이 없을 경우
         postRepository.save(posts);
     }
 }
