@@ -6,6 +6,5 @@ import java.time.LocalDateTime;
 
 @Getter
 public class PostRequest {
-
     private String content;
 }
