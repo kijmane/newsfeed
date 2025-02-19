@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.service.comment;
 
 import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-// 현재 PostRepository 가 없어서 오류 발생 *******
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
