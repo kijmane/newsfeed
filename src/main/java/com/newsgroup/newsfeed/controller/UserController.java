@@ -4,6 +4,7 @@ import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
 import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
 import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
 import com.newsgroup.newsfeed.service.user.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,12 @@ public class UserController {
         } else {
             return ResponseEntity.status(401).body("로그인 실패: 이메일 또는 비밀번호가 틀립니다.");
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate();   // 세션 무효화
+        return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 
     @GetMapping("/id/{id}")

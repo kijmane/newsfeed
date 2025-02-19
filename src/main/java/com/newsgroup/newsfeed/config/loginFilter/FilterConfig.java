@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+    //  로그인 필터를 등록
+    //  특정 URL에 대한 인증 필터 적용
+    @Bean   // 등록을 위한 Bean 생성
     public FilterRegistrationBean<LoginFilter> loginFilter() {
         FilterRegistrationBean<LoginFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new LoginFilter());
@@ -19,7 +21,7 @@ public class FilterConfig {
         registrationBean.addUrlPatterns("/comments/*");
 
         /* 로그인 URL 필터링 */
-        registrationBean.addUrlPatterns("/users/update");
+        registrationBean.addUrlPatterns("/users/update/*");
 
         /* 게시물 URL 필터링 */
         registrationBean.addUrlPatterns("/posts/*");

@@ -5,9 +5,11 @@ import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
 import com.newsgroup.newsfeed.dto.responseDto.user.UserResponseDto;
 import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
 import com.newsgroup.newsfeed.entity.Users;
+import com.newsgroup.newsfeed.enums.LoginEnum;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final HttpSession session;
 
     @Override
     public UserResponseDto registerUser(UserRequestDto userRequestDto) {
@@ -32,7 +35,10 @@ public class UserServiceImpl implements UserService {
         Optional<Users> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()) {
             Users user = userOptional.get();
-            return passwordEncoder.matches(password, user.getPassword());
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                session.setAttribute(LoginEnum.LOGIN_USER, user);
+                return true;
+            }
         }
         return false;
     }
@@ -58,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
         // 비밀번호 검증
         if (!passwordEncoder.matches(userProfileRequestDto.getPassword(), user.getPassword())) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED);
+            throw new CustomException(ErrorCode.UNAUTHORIZED_PASSWORD_NOT_FOUND);
         }
 
         // 닉네임 변경 후 저장
