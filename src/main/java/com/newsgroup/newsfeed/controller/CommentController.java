@@ -1,7 +1,7 @@
 package com.newsgroup.newsfeed.controller;
 
 import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.responseDtos.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
