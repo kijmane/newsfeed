@@ -62,7 +62,7 @@ public class FollowController {
         Users targetUser = getTargetUser(id);
         UnFollowResponse unFollowResponse = followService.unFollow(getLoginUser(session), targetUser);
 
-        ResponseEntity.ok().body(unFollowResponse);
+        return ResponseEntity.ok().body(unFollowResponse);
     }
 
     private Users getTargetUser(Long id) {
