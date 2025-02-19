@@ -2,10 +2,7 @@ package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Comments;
 
 import java.util.ArrayList;
@@ -21,7 +18,7 @@ public class Posts extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String email;
+
     private String content;
     private Long thumbsUpCount = 0L;
 
@@ -37,7 +34,6 @@ public class Posts extends BaseEntity {
                  Long thumbsUpCount,
                  Users users
     ) {
-        this.email = email;
         this.content = content;
         this.thumbsUpCount = thumbsUpCount;
         this.user = user;

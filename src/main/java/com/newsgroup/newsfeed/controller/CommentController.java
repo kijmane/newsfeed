@@ -1,7 +1,11 @@
 package com.newsgroup.newsfeed.controller;
 
+import com.newsgroup.newsfeed.config.GetLoginUser;
 import com.newsgroup.newsfeed.dto.request.comment.CommentRequest;
+import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
+import com.newsgroup.newsfeed.dto.response.comment.CommentSaveRespDto;
+import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 
@@ -22,6 +26,19 @@ public class CommentController {
 
     private final CommentService commentService;
 
+    @PostMapping("/new/{postId}")
+    public ResponseEntity<CommentSaveRespDto> newComment(@RequestBody String contents,
+                                                         @PathVariable Long postId,
+                                                         HttpSession session) {
+        /* postById 로직 */
+
+        Users user = getLoginUser(session);
+        Comment comment = new Comment(user, contents);
+        CommentSaveRespDto commentSaveRespDto = commentService.saveComment(comment);
+
+        return ResponseEntity.ok().body(commentSaveRespDto);
+    }
+
     /**
      * 특정 게시물의 댓글 목록 조회
      */
@@ -34,6 +51,7 @@ public class CommentController {
             @RequestParam(defaultValue = "createdDate") String sortBy,
             @RequestParam(defaultValue = "desc") String direction
     ) {
+
         Users user = getLoginUser(session); // 세션에서 로그인한 사용자 정보 가져오기
         List<CommentResponse> comments = commentService.getComments(postId, user, page, size, sortBy, direction);
         return ResponseEntity.ok(comments);
