@@ -43,7 +43,8 @@ public class CommentController {
             @PathVariable Long commentId,
             @Valid @RequestBody CommentRequest request
     ) {
-        return ResponseEntity.ok(commentService.updateComment(user, commentId, request));
+        CommentResponse updatedComment = commentService.updateComment(user, commentId, request);
+        return ResponseEntity.ok(updatedComment);
     }
 
     /**
