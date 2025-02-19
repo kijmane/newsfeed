@@ -1,9 +1,9 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.CommentRequest;
-import com.newsgroup.newsfeed.dto.CommentResponse;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Users;
-import com.newsgroup.newsfeed.service.CommentService;
+import com.newsgroup.newsfeed.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

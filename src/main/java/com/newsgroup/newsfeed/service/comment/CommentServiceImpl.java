@@ -1,7 +1,7 @@
-package com.newsgroup.newsfeed.service;
+package com.newsgroup.newsfeed.service.comment;
 
-import com.newsgroup.newsfeed.dto.CommentRequest;
-import com.newsgroup.newsfeed.dto.CommentResponse;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentRequest;
+import com.newsgroup.newsfeed.dto.requestDtos.comment.CommentResponse;
 import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
