@@ -1,6 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
+import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class Comment extends BaseEntity {
     private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = true)
     private Posts post;
 
     @Column(nullable = false)
@@ -41,5 +42,11 @@ public class Comment extends BaseEntity {
     public boolean isOwnerOrPostOwner(Users user) {
         return Objects.equals(this.user, user) ||
                 (this.post != null && this.post.getUser() != null && Objects.equals(this.post.getUser(), user));
+    }
+
+    public Comment(Users user, String content) {
+        this.content = content;
+//        this.post = dto.getPost();
+        this.user = user;
     }
 }

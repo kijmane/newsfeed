@@ -19,7 +19,7 @@ public class FilterConfig {
         registrationBean.addUrlPatterns("/comments/*");
 
         /* 로그인 URL 필터링 */
-        registrationBean.addUrlPatterns("/users/update");
+        registrationBean.addUrlPatterns("/users/update/*");
 
         /* 게시물 URL 필터링 */
         registrationBean.addUrlPatterns("/posts/*");

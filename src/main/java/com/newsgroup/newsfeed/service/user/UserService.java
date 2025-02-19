@@ -10,7 +10,8 @@ public interface UserService {
     Users loginUser(String email, String password);
     UserResponse getUserProfileById(Long id);
     UserResponse getUserProfileByNickname(String nickname);
-    UserResponse updateUserProfile(UserProfileRequest userProfileRequestDto);
+
+    UserResponse updateUserProfile(UserProfileRequest userProfileRequestDto, Users user);
 
     Users findById(Long id);
 }
