@@ -9,6 +9,9 @@ import com.newsgroup.newsfeed.enums.FollowEnum;
 
 import java.util.List;
 
+/**
+ * ~가 ~를 팔로우 / 언팔로우 -> (팔로우하는 사람, 팔로우 되는 사람) 형식으로 파라미터 대입
+ */
 public interface FollowService {
     FollowResponse follow(FollowRequest dto);
 
