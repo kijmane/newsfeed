@@ -1,0 +1,100 @@
+# Gradle 관련 파일 무시
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA 설정 파일 무시
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse 관련 파일 무시
+.classpath
+.factorypath
+.project
+.settings/
+bin/
+
+# NetBeans 관련 파일 무시
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code 설정 파일 무시
+.vscode/
+
+# Mac OS 시스템 파일 무시
+.DS_Store
+
+# **추가적으로 무시하면 좋은 항목**
+# 로그 파일
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS별 시스템 파일 무시
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+
+# IDE 및 에디터에서 생성되는 파일 추가 무시
+/.idea/**/workspace.xml
+/.idea/**/tasks.xml
+/.idea/**/usage.statistics.xml
+/.idea/**/dictionaries
+/.idea/**/shelf/
+/.idea/**/vcs.xml
+
+# Gradle 빌드 캐시 무시
+.gradle/
+!gradle/wrapper/gradle-wrapper.properties
+.gradle/gradle.lockfile
+
+# Java 컴파일된 클래스 및 JAR 파일 무시
+*.class
+*.war
+*.jar
+
+# Lombok cache 무시
+.lombok-cache/
+
+# 테스트 보고서 및 결과 파일 무시
+test-output/
+coverage/
+jacoco/
+
+# Spring Boot 실행 중 생성되는 임시 파일 무시
+*.h2.db
+*.mv.db
+*.sql.db
+
+# Docker 관련 무시
+.dockerignore
+docker-compose.override.yml
+
+# 환경 변수 파일 무시 (보안 문제 방지)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# IntelliJ가 생성하는 개인 설정 무시
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/shelf/
+
+# 특정 CI/CD 관련 설정 무시
+/.github/
+.gitlab-ci.yml
+.circleci/
