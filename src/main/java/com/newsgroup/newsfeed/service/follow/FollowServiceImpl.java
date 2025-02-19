@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 @RequiredArgsConstructor
 @Transactional
@@ -40,7 +41,7 @@ public class FollowServiceImpl implements FollowService {
     public List<SearchFollowerResponse> searchFollowList(Users targetUser, FollowEnum followEnum) {
         // Users -> SearchFollowerRespDto 변환
         return findAll().stream()
-                .map(follow -> followEnum.equals(FollowEnum.followers)
+                .map(follow -> followEnum.equals(FollowEnum.FOLLOWERS)
                         ? follow.getFollower()
                         : follow.getFollowed()
                 )
