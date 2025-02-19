@@ -16,7 +16,7 @@ import java.util.List;
 import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/comments")
 @RequiredArgsConstructor
 public class CommentController {
 
