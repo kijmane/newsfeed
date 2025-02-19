@@ -28,7 +28,7 @@ public class FollowController {
     private final FollowService followService;
     private final UserService userService;
 
-    @PostMapping("/{id}/followings")
+    @PostMapping("/{id}/follow")
     public ResponseEntity<FollowResponse> findFollow(@PathVariable Long id, HttpSession session) {
         Users loginUser = getLoginUser(session);
         Users targetUser = getTargetUser(id);
