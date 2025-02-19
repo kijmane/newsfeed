@@ -8,6 +8,7 @@ import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
+import com.newsgroup.newsfeed.repository.CommentRepository;
 import com.newsgroup.newsfeed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     // 게시글 생성 (인증된 사용자만 가능)
     @Transactional
@@ -108,23 +110,47 @@ public class PostServiceImpl implements PostService {
     }
 
 
-    // 좋아요 수 증가
+    // likePost에서 increaseThumbsUp 호출
     @Transactional
     @Override
-    public void increaseThumbsUp(Long postId) {
-        Posts posts = postRepository.findById(postId)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 삭제할 게시글이 없을 경우
-        posts.increaseThumbsUp();
+    public void likePost(Long id, Users user) {
+        Posts post = postRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));  // 게시글을 찾지 못한 경우
+
+        // 좋아요 수 증가
+        increaseThumbsUp(id); // increaseThumbsUp 메서드 호출
     }
 
-    // 댓글 수 증가
-//    @Transactional
-//    @Override
-//    public void addComment(Long postId, Comment comment) {
-//        Posts post = postRepository.findById(postId)
-//                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
-//
-//        post.getCommentList().add(comment);
-//        comment.setPost(post);
-//    }
+    // increaseThumbsUp 메서드 구현
+    @Transactional
+    @Override
+    public void increaseThumbsUp(Long id) {
+        Posts post = postRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));  // 게시글을 찾지 못한 경우
+
+        // 좋아요 수 증가
+        post.setThumbsUpCount(post.getThumbsUpCount() + 1); // 좋아요 수 1 증가
+        postRepository.save(post);  // 변경된 게시글 저장
+    }
+
+    // 댓글 추가 및 댓글 수 증가
+    @Transactional
+    @Override
+    public void addCommentAndUpdateCount(Long postId, Comment comment) {  // (수정) 메서드 정의 수정
+        // 게시글 찾기
+        Posts post = postRepository.findById(postId)
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+
+        // 댓글과 게시글 연관 설정
+        comment.setPost(post);  // 댓글이 어느 게시글에 속하는지 설정
+
+        // 댓글 추가
+        post.getCommentList().add(comment);  // 게시글의 댓글 리스트에 댓글 추가
+
+        // 댓글 저장
+        commentRepository.save(comment);  // (수정) 댓글을 데이터베이스에 저장
+
+        // 게시글 저장 (Post 엔티티에서 댓글 수는 getCommentsCount() 메서드로 자동으로 처리됨)
+        postRepository.save(post);  // 댓글이 추가된 게시글을 저장
+    }
 }

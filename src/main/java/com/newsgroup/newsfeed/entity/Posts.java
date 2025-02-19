@@ -56,9 +56,13 @@ public class Posts extends BaseEntity {
         this.content = content;
     }
 
-    // 좋아요수 증가 메서드
+    // 좋아요수 증가
     public void increaseThumbsUp() {
-        this.thumbsUpCount++;
+        this.thumbsUpCount++; // thumbsUpCount 값을 1 증가
+    }
+
+    public void setThumbsUpCount(Long thumbsUpCount) {
+        this.thumbsUpCount = thumbsUpCount;
     }
 
     // 댓글 수를 반환하는 메서드
@@ -66,4 +70,9 @@ public class Posts extends BaseEntity {
         return commentList != null ? (long) commentList.size() : 0L; // commentList가 null이면 0을 반환
     }
 
+    // 댓글 수 증가 메서드 (수정)
+    public void increaseCommentsCount() {
+        this.commentList.add(new Comment()); // 댓글 수 증가. 실제 댓글은 새로운 객체로 추가하지 않고 리스트에 추가만 함
+        // 실제 댓글 객체 추가를 원하시면, 주어진 게시글에 해당하는 댓글을 추가하는 방식으로 수정 필요
+    }
 }

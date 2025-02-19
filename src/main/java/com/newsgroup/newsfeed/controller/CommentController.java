@@ -9,6 +9,7 @@ import com.newsgroup.newsfeed.entity.Comment;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 
+import com.newsgroup.newsfeed.service.posts.PostService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 @RequiredArgsConstructor
 public class CommentController {
 
+    private final PostService postService;//추가
     private final CommentService commentService;
 
     @PostMapping("/new/{postId}")
@@ -35,6 +37,8 @@ public class CommentController {
         Users user = getLoginUser(session);
         Comment comment = new Comment(user, contents);
         CommentSaveRespDto commentSaveRespDto = commentService.saveComment(comment);
+
+        postService.addCommentAndUpdateCount(postId, comment);
 
         return ResponseEntity.ok().body(commentSaveRespDto);
     }
