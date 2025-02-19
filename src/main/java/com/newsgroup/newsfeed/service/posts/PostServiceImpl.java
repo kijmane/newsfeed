@@ -1,8 +1,8 @@
 package com.newsgroup.newsfeed.service.posts;
 
 
-import com.newsgroup.newsfeed.dto.requestDto.post.PostRequest;
-import com.newsgroup.newsfeed.dto.responseDto.post.PostResponseDto;
+import com.newsgroup.newsfeed.dto.request.post.PostRequest;
+import com.newsgroup.newsfeed.dto.response.post.PostResponse;
 import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
@@ -28,10 +28,11 @@ public class PostServiceImpl implements PostService {
     // 게시글 생성 (인증된 사용자만 가능)
     @Transactional
     @Override
-    public PostResponseDto createPost(Users user, PostRequest request) {
+    public PostResponse createPost(Users user, PostRequest request) {
+//        Users user = session.getAttribute("세션명");
         if (user == null) {
             throw new CustomException(ErrorCode.UNAUTHORIZED); // 401
-        }
+        } // 로그인한 유저가 맞나?
 
         Posts post = Posts.builder()
                 .user(user)
@@ -41,7 +42,7 @@ public class PostServiceImpl implements PostService {
                 .build();
 
         Posts savedPost = postRepository.save(post);
-        return new PostResponseDto(
+        return new PostResponse(
                 savedPost.getId(),
                 savedPost.getEmail(),
                 savedPost.getContent(),
@@ -55,11 +56,11 @@ public class PostServiceImpl implements PostService {
     // 전체 게시글 조회
     @Transactional(readOnly = true)
     @Override
-    public List<PostResponseDto> findAll(int page, int size) {
+    public List<PostResponse> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("modifiedAt").descending()); // 페이지네이션
         Page<Posts> posts = postRepository.findAll(pageable);
         return posts.getContent().stream()
-                .map(post -> new PostResponseDto(
+                .map(post -> new PostResponse(
                         post.getId(),
                         post.getEmail(),
                         post.getContent(),
@@ -73,18 +74,18 @@ public class PostServiceImpl implements PostService {
     // 게시글 수정 (작성자만 수정가능)
     @Transactional
     @Override
-    public PostResponseDto update(Long id, String email, PostRequest dto) {
+    public PostResponse update(Long id, String email, PostRequest dto) {
         Posts post = postRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND)); // 게시글이 없을경우
+                .orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
 
         // 작성자 검증
         if (!post.getEmail().equals(email)) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE); // 수정 권한이 없을경우
+            throw new CustomException(ErrorCode.UNAUTHORIZED_POST_UPDATE);
         }
 
         post.update(dto.getContent());
         postRepository.save(post);
-        return  new PostResponseDto(post.getId(),
+        return  new PostResponse(post.getId(),
                 dto.getEmail(),
                 dto.getContent(),
                 dto.getThumbsUpCount(),
