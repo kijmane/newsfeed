@@ -28,17 +28,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean loginUser(String email, String password) {
+    public Users loginUser(String email, String password) {
         Optional<Users> userOptional = userRepository.findByEmail(email);
+
         if (userOptional.isPresent()) {
             Users user = userOptional.get();
-            return passwordEncoder.matches(password, user.getPassword());
+            boolean isMatch = passwordEncoder.matches(password, user.getPassword());
+
+            if (isMatch) {
+                return user;
+            } else {
+                throw new CustomException(ErrorCode.UNAUTHORIZED_PASSWORD_NOT_FOUND);
+            }
+        } else {
+            throw new CustomException(ErrorCode.UNAUTHORIZED_EMAIL_NOT_FOUND);
         }
-        return false;
     }
 
     @Override
-    public UserResponse getUserProfileById(java.lang.Long id) {
+    public UserResponse getUserProfileById(Long id) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return new UserResponse(user);
@@ -66,5 +74,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return new UserResponse(user);
+    }
+
+    @Override
+    public Users findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
     }
 }

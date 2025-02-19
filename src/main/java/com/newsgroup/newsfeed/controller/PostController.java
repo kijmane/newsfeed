@@ -1,14 +1,18 @@
 package com.newsgroup.newsfeed.controller;
 
+import com.newsgroup.newsfeed.config.GetLoginUser;
 import com.newsgroup.newsfeed.dto.request.post.PostRequest;
 import com.newsgroup.newsfeed.dto.response.post.PostResponse;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.posts.PostService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +23,14 @@ public class PostController {
     // 게시글 추가 (인증된 사용자만 가능)
     @PostMapping("/posts")
     public ResponseEntity<PostResponse> createPost(
+<<<<<<< HEAD
             @RequestHeader Users user,
+=======
+            HttpSession session,
+>>>>>>> dev
             @RequestBody PostRequest request
     ) {
+        Users user = getLoginUser(session);
         PostResponse response = postService.createPost(user, request);
         return ResponseEntity.ok(response);
     }

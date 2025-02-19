@@ -14,6 +14,8 @@ public enum ErrorCode {
 
     // 401 Unauthorized (인증 필요)
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "인증이 필요합니다."),
+    UNAUTHORIZED_PASSWORD_NOT_FOUND(HttpStatus.UNAUTHORIZED, "이메일, 혹은 비밀번호가 일치하지 않습니다."),
+    UNAUTHORIZED_EMAIL_NOT_FOUND(HttpStatus.UNAUTHORIZED, "이메일, 혹은 비밀번호가 일치하지 않습니다."),
 
     // 403 Forbidden (권한 없음)
     FORBIDDEN(HttpStatus.FORBIDDEN, "권한이 없습니다."),
