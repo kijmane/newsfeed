@@ -5,6 +5,8 @@ import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
 import com.newsgroup.newsfeed.dto.responseDtos.user.UserResponseDto;
 import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
 import com.newsgroup.newsfeed.entity.Users;
+import com.newsgroup.newsfeed.exception.CustomException;
+import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,27 +38,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserProfileById(Long id) {
+    public UserResponseDto getUserProfileById(java.lang.Long id) {
         Users user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 사용자가 없습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return new UserResponseDto(user);
     }
 
     @Override
     public UserResponseDto getUserProfileByNickname(String nickname) {
         Users user = userRepository.findByNickname(nickname)
-                .orElseThrow(() -> new IllegalArgumentException("해당 닉네임의 사용자가 없습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return new UserResponseDto(user);
     }
 
     @Override
     public UserResponseDto updateUserProfile(UserProfileRequestDto userProfileRequestDto) {
         Users user = userRepository.findByEmail(userProfileRequestDto.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 사용자가 없습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
         // 비밀번호 검증
         if (!passwordEncoder.matches(userProfileRequestDto.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new CustomException(ErrorCode.UNAUTHORIZED);
         }
 
         // 닉네임 변경 후 저장
