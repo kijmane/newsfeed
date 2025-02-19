@@ -1,8 +1,8 @@
 package com.newsgroup.newsfeed.controller;
 
-import com.newsgroup.newsfeed.dto.requestDtos.user.UserRequestDto;
-import com.newsgroup.newsfeed.dto.responseDtos.user.UserResponseDto;
-import com.newsgroup.newsfeed.dto.requestDtos.user.UserProfileRequestDto;
+import com.newsgroup.newsfeed.dto.request.user.UserRequest;
+import com.newsgroup.newsfeed.dto.response.user.UserResponse;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
 import com.newsgroup.newsfeed.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> register(@RequestBody UserRequestDto userRequestDto) {
-        UserResponseDto userResponseDto = userService.registerUser(userRequestDto);
+    public ResponseEntity<UserResponse> register(@RequestBody UserRequest userRequestDto) {
+        UserResponse userResponseDto = userService.registerUser(userRequestDto);
         return ResponseEntity.ok(userResponseDto);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<String> login(@RequestBody UserRequest userRequestDto) {
         boolean success = userService.loginUser(userRequestDto.getEmail(), userRequestDto.getPassword());
         if (success) {
             return ResponseEntity.ok("로그인 성공!");
@@ -31,20 +31,20 @@ public class UserController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<UserResponseDto> getUserProfileById(@PathVariable Long id) {
-        UserResponseDto userResponseDto = userService.getUserProfileById(id);
+    public ResponseEntity<UserResponse> getUserProfileById(@PathVariable Long id) {
+        UserResponse userResponseDto = userService.getUserProfileById(id);
         return ResponseEntity.ok(userResponseDto);
     }
 
     @GetMapping("/nickname/{nickname}")
-    public ResponseEntity<UserResponseDto> getUserProfileByNickname(@PathVariable String nickname) {
-        UserResponseDto userResponseDto = userService.getUserProfileByNickname(nickname);
+    public ResponseEntity<UserResponse> getUserProfileByNickname(@PathVariable String nickname) {
+        UserResponse userResponseDto = userService.getUserProfileByNickname(nickname);
         return ResponseEntity.ok(userResponseDto);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserResponseDto> updateUserProfile(@RequestBody UserProfileRequestDto userProfileRequestDto) {
-        UserResponseDto userResponseDto = userService.updateUserProfile(userProfileRequestDto);
+    public ResponseEntity<UserResponse> updateUserProfile(@RequestBody UserProfileRequest userProfileRequestDto) {
+        UserResponse userResponseDto = userService.updateUserProfile(userProfileRequestDto);
         return ResponseEntity.ok(userResponseDto);
     }
 }
