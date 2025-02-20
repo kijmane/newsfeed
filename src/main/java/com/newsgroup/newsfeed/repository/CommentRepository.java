@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
     - 댓글 데이터를 데이터베이스에서 조회 , 저장 , 삭제 제공
  */
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Page<Comment> findByPostId (Long postId, Pageable pageable);
+    Page<Comment> findAllByPostId(Long postId, Pageable pageable);
 }

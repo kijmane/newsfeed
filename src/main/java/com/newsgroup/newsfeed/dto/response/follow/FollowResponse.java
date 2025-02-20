@@ -15,15 +15,15 @@ public class FollowResponse {
 
     private Long followedId;
 
-    private LocalDateTime createdDate;
-
-    private LocalDateTime unfollowDate;
+//    private LocalDateTime createdDate;
+//
+//    private LocalDateTime unfollowDate;
 
     public FollowResponse(Follow follow) {
         this.id = follow.getId();
         this.followedId = follow.getFollowed().getId();
         this.followerId = follow.getFollower().getId();
-        this.createdDate = follow.getCreatedDate();
-        this.unfollowDate = follow.getUnfollowDate();
+//        this.createdDate = follow.getCreatedDate();
+//        this.unfollowDate = follow.getUnfollowDate();
     }
 }

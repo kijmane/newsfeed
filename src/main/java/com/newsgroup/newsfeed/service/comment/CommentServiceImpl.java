@@ -8,7 +8,6 @@ import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.CommentRepository;
-import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
     public List<CommentResponse> getComments(Long postId, Users currentUser, int page, int size, String sortBy, String direction) {
         Sort sort = direction.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(page, size, sort);
-        Page<Comment> commentPage = commentRepository.findByPostId (postId, pageable);
+        Page<Comment> commentPage = commentRepository.findAllByPostId(postId, pageable);
         return commentPage.stream()
                 .map(comment -> CommentResponse.from(comment, currentUser))
                 .collect(Collectors.toList());
