@@ -1,7 +1,6 @@
 package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
-import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import jakarta.persistence.*;
 import lombok.*;
 
