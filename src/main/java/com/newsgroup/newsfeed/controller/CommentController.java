@@ -80,7 +80,7 @@ public class CommentController {
             HttpSession session,
             @PathVariable Long commentId
     ) {
-        Users user = getLoginUser(session); // 세션에서 로그인한 사용자 정보 가져오기
+        Users user = getLoginUser(session); // 세션에서 로그인한 사용자 정보 가져오
         commentService.deleteComment(user, commentId);
         return ResponseEntity.noContent().build();
     }
