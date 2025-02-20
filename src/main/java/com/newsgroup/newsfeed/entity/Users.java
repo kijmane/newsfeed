@@ -1,6 +1,7 @@
 package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
+import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -41,23 +42,36 @@ public class Users extends BaseEntity {
         this.followingNum = 0L;
     }
 
+    public Users setUser(UserProfileRequest dto) {
+        if (dto.getEmail() != null) {
+            this.email = dto.getEmail();
+        }
+        if (dto.getPassword() != null) {
+            this.password = dto.getPassword();
+        }
+        if (dto.getNewNickname() != null) {
+            this.nickname = dto.getNewNickname();
+        }
+        return this;
+    }
+
     public void updateNickname(String newNickname) {
         this.nickname = newNickname;
     }
 
-    public void increaseFollowCount() {
-        this.followNum++;
+    public Long increaseFollowCount() {
+        return ++this.followNum;
     }
 
-    public void increaseFollowingCount() {
-        this.followingNum++;
+    public Long increaseFollowingCount() {
+        return ++this.followingNum;
     }
 
-    public void decreaseFollowCount() {
-        this.followNum--;
+    public Long decreaseFollowCount() {
+        return --this.followNum;
     }
 
-    public void decreaseFollowingCount() {
-        this.followingNum--;
+    public Long decreaseFollowingCount() {
+        return --this.followingNum;
     }
 }

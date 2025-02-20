@@ -1,9 +1,10 @@
 package com.newsgroup.newsfeed.dto.request.user;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
 public class UserRequest {
     private String email;

@@ -1,5 +1,6 @@
 package com.newsgroup.newsfeed.controller;
 
+import com.newsgroup.newsfeed.config.GetLoginUser;
 import com.newsgroup.newsfeed.dto.request.user.UserRequest;
 import com.newsgroup.newsfeed.dto.response.user.UserResponse;
 import com.newsgroup.newsfeed.dto.request.user.UserProfileRequest;
@@ -35,6 +36,13 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate();   // 세션 무효화
+        return ResponseEntity.ok("로그아웃 되었습니다.");
+    }
+
+
     @GetMapping("/id/{id}")
     public ResponseEntity<UserResponse> getUserProfileById(@PathVariable Long id) {
         UserResponse userResponseDto = userService.getUserProfileById(id);
@@ -47,9 +55,17 @@ public class UserController {
         return ResponseEntity.ok(userResponseDto);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<UserResponse> updateUserProfile(@RequestBody UserProfileRequest userProfileRequestDto) {
-        UserResponse userResponseDto = userService.updateUserProfile(userProfileRequestDto);
+//    @PutMapping("/update")
+//    public ResponseEntity<UserResponse> updateUserProfile(@RequestBody UserProfileRequest userProfileRequestDto) {
+//        UserResponse userResponseDto = userService.updateUserProfile(userProfileRequestDto);
+//        return ResponseEntity.ok(userResponseDto);
+//    }
+
+    @PostMapping("/update")
+    public ResponseEntity<UserResponse> updateUserProfile(@RequestBody UserProfileRequest userProfileRequestDto,
+                                                          HttpSession session) {
+        Users loginUser = GetLoginUser.getLoginUser(session);
+        UserResponse userResponseDto = userService.updateUserProfile(userProfileRequestDto, loginUser);
         return ResponseEntity.ok(userResponseDto);
     }
 }

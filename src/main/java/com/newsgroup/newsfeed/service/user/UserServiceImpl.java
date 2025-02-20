@@ -8,6 +8,7 @@ import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -60,20 +62,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse updateUserProfile(UserProfileRequest userProfileRequestDto) {
-        Users user = userRepository.findByEmail(userProfileRequestDto.getEmail())
-                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+    public UserResponse updateUserProfile(UserProfileRequest userProfileRequestDto, Users loginUser) {
 
-        // 비밀번호 검증
-        if (!passwordEncoder.matches(userProfileRequestDto.getPassword(), user.getPassword())) {
-            throw new CustomException(ErrorCode.UNAUTHORIZED);
-        }
-
-        // 닉네임 변경 후 저장
-        user.updateNickname(userProfileRequestDto.getNewNickname());
-        userRepository.save(user);
-
-        return new UserResponse(user);
+        loginUser.setUser(userProfileRequestDto);
+        UserResponse userResponse = new UserResponse(loginUser);
+        return userResponse;
     }
 
     @Override
