@@ -54,7 +54,7 @@ public class CommentController {
             @RequestParam(defaultValue = "desc") String direction
     ) {
 
-        Users user = getLoginUser(session); // 세션에서 로그인한 사용자 정보 가져오기
+        Users user = getLoginUser(session);
         List<CommentResponse> comments = commentService.getComments(postId, user, page, size, sortBy, direction);
         return ResponseEntity.ok(comments);
     }
