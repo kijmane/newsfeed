@@ -1,7 +1,6 @@
 package com.newsgroup.newsfeed.service.comment;
 
 import com.newsgroup.newsfeed.dto.request.comment.CommentRequest;
-import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
 import com.newsgroup.newsfeed.dto.response.comment.CommentSaveRespDto;
 import com.newsgroup.newsfeed.entity.Comment;
