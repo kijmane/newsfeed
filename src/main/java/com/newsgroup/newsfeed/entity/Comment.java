@@ -1,7 +1,6 @@
 package com.newsgroup.newsfeed.entity;
 
 import com.newsgroup.newsfeed.config.BaseEntity;
-import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -44,9 +43,9 @@ public class Comment extends BaseEntity {
                 (this.post != null && this.post.getUser() != null && Objects.equals(this.post.getUser(), user));
     }
 
-    public Comment(Users user, String content) {
+    public Comment(Users user, String content, Posts post) {
         this.content = content;
-//        this.post = dto.getPost();
+        this.post = post;
         this.user = user;
     }
 }

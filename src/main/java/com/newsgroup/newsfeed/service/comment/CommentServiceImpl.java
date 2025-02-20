@@ -8,6 +8,7 @@ import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.exception.CustomException;
 import com.newsgroup.newsfeed.exception.ErrorCode;
 import com.newsgroup.newsfeed.repository.CommentRepository;
+import com.newsgroup.newsfeed.service.posts.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +27,10 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
+
     @Override
     @Transactional
     public CommentSaveRespDto saveComment(Comment comment) {
-        /* findByPostId 로직  */
         commentRepository.save(comment);
         CommentSaveRespDto respDto = new CommentSaveRespDto(comment);
         return respDto;

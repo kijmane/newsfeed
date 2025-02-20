@@ -6,6 +6,7 @@ import com.newsgroup.newsfeed.dto.request.comment.CommentSaveReqDto;
 import com.newsgroup.newsfeed.dto.response.comment.CommentResponse;
 import com.newsgroup.newsfeed.dto.response.comment.CommentSaveRespDto;
 import com.newsgroup.newsfeed.entity.Comment;
+import com.newsgroup.newsfeed.entity.Posts;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.comment.CommentService;
 
@@ -25,20 +26,17 @@ import static com.newsgroup.newsfeed.config.GetLoginUser.getLoginUser;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final PostService postService;//추가
     private final CommentService commentService;
+    private final PostService postService;
 
     @PostMapping("/new/{postId}")
     public ResponseEntity<CommentSaveRespDto> newComment(@RequestBody String contents,
                                                          @PathVariable Long postId,
                                                          HttpSession session) {
-        /* postById 로직 */
-
+        Posts post = postService.findById(postId);
         Users user = getLoginUser(session);
-        Comment comment = new Comment(user, contents);
+        Comment comment = new Comment(user, contents, post);
         CommentSaveRespDto commentSaveRespDto = commentService.saveComment(comment);
-
-        postService.addCommentAndUpdateCount(postId, comment);
 
         return ResponseEntity.ok().body(commentSaveRespDto);
     }

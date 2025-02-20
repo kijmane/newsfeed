@@ -36,6 +36,13 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate();   // 세션 무효화
+        return ResponseEntity.ok("로그아웃 되었습니다.");
+    }
+
+
     @GetMapping("/id/{id}")
     public ResponseEntity<UserResponse> getUserProfileById(@PathVariable Long id) {
         UserResponse userResponseDto = userService.getUserProfileById(id);

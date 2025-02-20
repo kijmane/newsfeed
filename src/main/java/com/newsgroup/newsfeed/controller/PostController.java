@@ -87,15 +87,8 @@ public class PostController {
      * 좋아요 수 증가
      */
     @PostMapping("/posts/{id}/thumbs-up")
-    public ResponseEntity<Void> likePost(@PathVariable Long id, HttpSession session) {
-        Users user = getLoginUser(session);  // 로그인한 사용자 정보 가져오기
-        postService.likePost(id, user);
+    public ResponseEntity<Void> increaseThumbsUp(@PathVariable("id") Long id) {
+        postService.increaseThumbsUp(id);
         return ResponseEntity.ok().build();
-    }
-
-    // 로그인한 사용자 정보 가져오는 메서드
-    private Users getLoginUser(HttpSession session) {
-        // 세션에서 로그인된 사용자 정보 가져오는 로직
-        return (Users) session.getAttribute("loginUser");
     }
 }

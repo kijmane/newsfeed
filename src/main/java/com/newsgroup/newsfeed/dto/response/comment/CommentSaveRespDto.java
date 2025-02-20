@@ -13,14 +13,14 @@ public class CommentSaveRespDto {
 
     private Users user;
 
-    private Posts post;
+    private Long post;
 
     private String content;
 
     public CommentSaveRespDto(Comment comment) {
         this.content = comment.getContent();
         this.id = comment.getId();
-        this.post = comment.getPost();
+        this.post = comment.getPost().getId();
         this.user = comment.getUser();
     }
 }
