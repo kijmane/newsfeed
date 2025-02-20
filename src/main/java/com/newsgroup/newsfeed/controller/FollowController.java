@@ -3,6 +3,7 @@ package com.newsgroup.newsfeed.controller;
 import com.newsgroup.newsfeed.dto.request.follow.FollowRequest;
 import com.newsgroup.newsfeed.dto.response.follow.FollowResponse;
 import com.newsgroup.newsfeed.dto.response.follow.SearchFollowerResponse;
+import com.newsgroup.newsfeed.dto.response.follow.UnFollowResponse;
 import com.newsgroup.newsfeed.entity.Users;
 import com.newsgroup.newsfeed.service.follow.FollowService;
 import com.newsgroup.newsfeed.service.user.UserService;
@@ -57,9 +58,11 @@ public class FollowController {
     }
 
     @PostMapping("/{id}/unfollow")
-    public void unfollowUser(@PathVariable Long id, HttpSession session) {
+    public ResponseEntity<UnFollowResponse> unfollowUser(@PathVariable Long id, HttpSession session) {
         Users targetUser = getTargetUser(id);
-        followService.unFollow(getLoginUser(session), targetUser);
+        UnFollowResponse unFollowResponse = followService.unFollow(getLoginUser(session), targetUser);
+
+        return ResponseEntity.ok().body(unFollowResponse);
     }
 
     private Users getTargetUser(Long id) {

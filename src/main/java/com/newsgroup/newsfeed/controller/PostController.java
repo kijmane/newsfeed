@@ -33,7 +33,7 @@ public class PostController {
         String email = user.getEmail();
 
         Posts post = Posts.builder()
-                .email(email)  // 세션에서 받은 email을 Posts 엔티티에 설정
+                 .email(email)  // 세션에서 받은 email을 Posts 엔티티에 설정
                 .content(request.getContent())  // 클라이언트에서 전달된 content
                 .thumbsUpCount(0L)  // 기본값 설정
                 .user(user)  // 로그인한 사용자 정보
