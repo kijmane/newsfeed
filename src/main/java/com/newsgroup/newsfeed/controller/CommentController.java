@@ -68,7 +68,7 @@ public class CommentController {
             @PathVariable Long commentId,
             @Valid @RequestBody CommentRequest request
     ) {
-        Users user = getLoginUser(session); // 세션에서 로그인한 사용자 정보 가져오기
+        Users user = getLoginUser(session);
         return ResponseEntity.ok(commentService.updateComment(user, commentId, request));
     }
 
