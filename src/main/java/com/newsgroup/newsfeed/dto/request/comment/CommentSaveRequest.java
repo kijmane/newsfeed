@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CommentSaveReqDto {
+public class CommentSaveRequest {
 
     private Long postId;
 
     private String content;
 
-    public CommentSaveReqDto(Comment comment) {
+    public CommentSaveRequest(Comment comment) {
         this.content = comment.getContent();
         if (comment.getPost() == null) {
             this.postId = null;
