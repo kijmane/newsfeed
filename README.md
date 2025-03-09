@@ -12,5 +12,5 @@
 - JPA
 - Session 인증 방식
 
-## ERD 설계
+## ERD
 <img width="1105" alt="스크린샷 2025-03-09 오후 3 26 29" src="https://github.com/user-attachments/assets/8d86dbcd-a4c8-44ef-8d77-ad15a84460d4" />
