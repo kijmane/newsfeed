@@ -16,7 +16,7 @@
 <img width="769" alt="스크린샷 2025-02-20 오전 10 08 56" src="https://github.com/user-attachments/assets/f458ea8f-b705-494f-871f-7c9e4d506fd8" />
 
 ## Team Roles
-| 이름 | 역할 |
+| Name | Contribution |
 | -- | -- |
 | 김원준 | 로그인, 회원가입 |
 | 김제인 | 댓글관리, 게시글 작성 |
