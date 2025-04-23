@@ -1,4 +1,4 @@
-# Newsfeed
+# SNS Backend System
 ## Project Overview
 - SNS의 뉴스피드 백엔드를 구현하는 팀 프로젝트
 
