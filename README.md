@@ -11,7 +11,7 @@
 - Spring
 - JPA
 - Session 인증 방식
-- <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-6DB33F?style=flat-square&logo=Redis&logoColor=white"/><img src="https://img.shields.io/badge/Session-6DB33F?style=flat-square&logo=Redis&logoColor=white"/>
+- <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-6DB33F?style=flat-square&logo=JPA&logoColor=white"/><img src="https://img.shields.io/badge/Session-6DB33F?style=flat-square&logo=Session&logoColor=white"/>
 
 ## ERD
 <img width="769" alt="스크린샷 2025-02-20 오전 10 08 56" src="https://github.com/user-attachments/assets/f458ea8f-b705-494f-871f-7c9e4d506fd8" />
